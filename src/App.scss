@@ -1,0 +1,162 @@
+@use 'mixin';
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Lato', sans-serif, monospace;
+    user-select: none;
+}
+
+:root {
+    --primary: #5ebbff;
+    --primary-to: #a174ff;
+    --header-height: 60px;
+
+    --bg-color: #f6f7f9;
+    --header-color: rgba(246, 247, 249, 0.6);
+    --header-box-shadow: 0px 1px 0px rgba(0, 86, 135, 0.08);
+    --text-color: #45494f;
+    --text-color-1: #0093fc;
+    --text-color-2: #808b9a;
+    --text-color-3: #45494f;
+
+    // input
+    --input-text-color: #424242;
+    --input-bg-color: #eef4fc;
+    --input-border-color: #0093fc;
+    --input-focus-bg-color: #fff;
+    --input-radio-border-color: #808b9a;
+
+    --selection-color: #fff;
+    --bg-sidebar: #fff;
+    --sidebar-item-hover-color: #f2f9ff;
+    --sidebar-item-active-color: #0093fc;
+    --border-color: #e4eef0;
+
+    --tab-group-bg-color: #eaedf2;
+    --tab-group-text-color: #808b9a;
+    --tab-group-active-text-color: #4e586b;
+
+    // SVG
+    --svg-arrow: #2e3441;
+}
+
+::-webkit-scrollbar {
+    background-color: transparent;
+    width: 1px;
+
+    &-track {
+        background-color: transparent;
+    }
+
+    &-thumb {
+        background-color: #7b7b7b;
+        border-radius: 16px;
+    }
+
+    &-button {
+        display: none;
+    }
+}
+
+::selection {
+    background-color: var(--primary);
+    color: var(--selection-color);
+}
+
+html {
+    font-size: 16px;
+    background-color: var(--bg-color);
+    overflow: hidden;
+}
+
+ul,
+ol,
+dl {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+input[type='radio'] {
+    appearance: none;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--input-radio-border-color);
+    position: relative;
+
+    &:checked {
+        &::before {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            background-color: #fff;
+            transform: translate(-50%, -50%);
+        }
+
+        background: linear-gradient(141.34deg, var(--primary) 0%, var(--primary-to) 91.11%) border-box;
+        box-shadow: 0 0 6px var(--primary);
+    }
+}
+
+select {
+    border-radius: 8px;
+    padding: 6px 10px 6px;
+}
+
+.App {
+    &[app-mode='dark'] {
+        --bg-color: #191d1e;
+        --header-color: rgba(25, 29, 30, 0.6);
+        --header-box-shadow: none;
+        --text-color: #fffc;
+        --text-color-1: #fffc;
+        --text-color-2: #fffc;
+        --text-color-3: #fff;
+        --input-text-color: #fff;
+        --input-bg-color: #323c4a;
+        --input-border-color: #4ddaff;
+        --input-focus-bg-color: #232e49;
+        --selection-color: #212121;
+        --bg-sidebar: #272a31;
+        --sidebar-item-hover-color: #32353b;
+        --sidebar-item-active-color: #191d1e;
+        --border-color: #181d1e;
+        --tab-group-bg-color: #323839;
+        --tab-group-active-text-color: #dae4f0;
+
+        --svg-arrow: #ffffffd6;
+    }
+
+    // default is dark mode, and has linear-gradient color
+    &[app-mode='light'] {
+        svg[data-type='svg-dot'] path {
+            fill: #fff;
+        }
+    }
+
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    transition: all 0.15s ease-in-out;
+}
+
+.flex-center {
+    @include mixin.flex-center;
+}
+
+@for $i from 1 through 8 {
+    .g-#{$i} {
+        gap: calc(0.25rem * $i);
+    }
+}

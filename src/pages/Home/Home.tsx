@@ -1,7 +1,13 @@
+import Header from '@c/Header';
 import { Props } from '~/interfaces';
 
 const Home: React.FC<Props> = ({ children }) => {
-    return <div style={{ paddingTop: 'var(--header-height)' }}>{children}</div>;
+    return (
+        <>
+            <Header />
+            <div>{children}</div>
+        </>
+    );
 };
 
 export default Home;

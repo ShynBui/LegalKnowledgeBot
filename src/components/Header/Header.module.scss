@@ -1,0 +1,24 @@
+.wrapper {
+    --header-height: 60px;
+
+    height: var(--header-height);
+    padding: 0 25px;
+
+    background: var(--header-color);
+    -webkit-backdrop-filter: blur(32px);
+    backdrop-filter: blur(32px);
+    box-shadow: var(--header-box-shadow);
+}
+
+.logo {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    height: 40px;
+
+    &-text {
+        white-space: nowrap;
+        font-size: 1.8rem;
+        margin-left: 7.5px;
+    }
+}
