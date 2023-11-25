@@ -3,6 +3,7 @@ import Loading from '@p/Loading';
 
 const Home = lazy(() => import('@p/Home'));
 const PhapDien = lazy(() => import('@p/PhapDien'));
+const Chat = lazy(() => import('@p/Chat'));
 
 const routes = [
     {
@@ -12,6 +13,10 @@ const routes = [
     {
         path: '/phap-dien',
         page: PhapDien,
+    },
+    {
+        path: '/chat',
+        page: Chat,
     },
     {
         path: '*',

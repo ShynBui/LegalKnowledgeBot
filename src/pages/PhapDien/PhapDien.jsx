@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { forwardRef } from 'react';
 import Box from '@mui/material/Box';
 import { useSpring, animated } from '@react-spring/web';
 import SvgIcon from '@mui/material/SvgIcon';
@@ -50,7 +50,7 @@ function TransitionComponent(props) {
     );
 }
 
-const CustomTreeItem = React.forwardRef((props, ref) => (
+const CustomTreeItem = forwardRef((props, ref) => (
     <TreeItem {...props} TransitionComponent={TransitionComponent} ref={ref} />
 ));
 
