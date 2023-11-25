@@ -1,7 +1,6 @@
 import Header from '@c/Header';
-import { Props } from '~/interfaces';
 
-const Home: React.FC<Props> = ({ children }) => {
+const Home = ({ children }) => {
     return (
         <>
             <Header />

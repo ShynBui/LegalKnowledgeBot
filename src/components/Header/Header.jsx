@@ -5,13 +5,12 @@ import Button from '@mui/material/Button';
 
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
-import { Props } from '~/interfaces';
 import AuthModal from './AuthModal';
 
 let cx = classNames.bind(styles);
 
-const Header: React.FC<Props> = () => {
-    const [open, setOpen] = useState<boolean>(false);
+const Header = () => {
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 

@@ -10,7 +10,7 @@ import cookie from 'react-cookies';
 
 export const MyUserContext = createContext(null);
 
-const App: React.FC = () => {
+const App = () => {
     const [user, dispatch] = useReducer(MyUserReducer, cookie.load('user') || null);
 
     return (

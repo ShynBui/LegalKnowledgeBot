@@ -3,7 +3,7 @@ import styles from './Loading.module.scss';
 
 const cx = classNames.bind(styles);
 
-const Loading: React.FC = () => {
+const Loading = () => {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('loader')}>

@@ -1,12 +1,10 @@
 import { lazy } from 'react';
-import { IRoute } from '~/interfaces';
-
 import Loading from '@p/Loading';
 
 const Home = lazy(() => import('@p/Home'));
 const PhapDien = lazy(() => import('@p/PhapDien'));
 
-const routes: IRoute[] = [
+const routes = [
     {
         path: '/',
         page: Home,

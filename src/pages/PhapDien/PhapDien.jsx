@@ -1,15 +1,14 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { useSpring, animated } from '@react-spring/web';
-import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
-import { TransitionProps } from '@mui/material/transitions';
+import SvgIcon from '@mui/material/SvgIcon';
 import Collapse from '@mui/material/Collapse';
 import { alpha, styled } from '@mui/material/styles';
 import { TreeView } from '@mui/x-tree-view/TreeView';
-import { TreeItem, TreeItemProps, treeItemClasses } from '@mui/x-tree-view/TreeItem';
-import { jdChuDe } from './data';
+import { TreeItem, treeItemClasses } from '@mui/x-tree-view/TreeItem';
+import { jdChuDe, jdDeMuc } from './data';
 
-function MinusSquare(props: SvgIconProps) {
+function MinusSquare(props) {
     return (
         <SvgIcon fontSize="inherit" style={{ width: 14, height: 14 }} {...props}>
             {/* tslint:disable-next-line: max-line-length */}
@@ -18,7 +17,7 @@ function MinusSquare(props: SvgIconProps) {
     );
 }
 
-function PlusSquare(props: SvgIconProps) {
+function PlusSquare(props) {
     return (
         <SvgIcon fontSize="inherit" style={{ width: 14, height: 14 }} {...props}>
             {/* tslint:disable-next-line: max-line-length */}
@@ -27,7 +26,7 @@ function PlusSquare(props: SvgIconProps) {
     );
 }
 
-function CloseSquare(props: SvgIconProps) {
+function CloseSquare(props) {
     return (
         <SvgIcon className="close" fontSize="inherit" style={{ width: 14, height: 14 }} {...props}>
             {/* tslint:disable-next-line: max-line-length */}
@@ -36,7 +35,7 @@ function CloseSquare(props: SvgIconProps) {
     );
 }
 
-function TransitionComponent(props: TransitionProps) {
+function TransitionComponent(props) {
     const style = useSpring({
         to: {
             opacity: props.in ? 1 : 0,
@@ -51,7 +50,7 @@ function TransitionComponent(props: TransitionProps) {
     );
 }
 
-const CustomTreeItem = React.forwardRef((props: TreeItemProps, ref: React.Ref<HTMLLIElement>) => (
+const CustomTreeItem = React.forwardRef((props, ref) => (
     <TreeItem {...props} TransitionComponent={TransitionComponent} ref={ref} />
 ));
 
@@ -68,76 +67,36 @@ const StyledTreeItem = styled(CustomTreeItem)(({ theme }) => ({
     },
 }));
 
-interface RenderTree {
-    id: string;
-    name: string;
-    children?: readonly RenderTree[];
-    detailUrl?: string;
-    listOfDocsUrl?: string;
-}
-
-const data: RenderTree = {
-    id: '1',
-    name: 'Main',
-    children: [
-        {
-            id: '2',
-            name: 'Hello',
-        },
-        {
-            id: '3',
-            name: 'Subtree with children',
-            children: [
-                {
-                    id: '6',
-                    name: 'Hello',
-                },
-                {
-                    id: '7',
-                    name: 'Sub-subtree with children',
-                    children: [
-                        {
-                            id: '9',
-                            name: 'Child 1',
-                        },
-                        {
-                            id: '10',
-                            name: 'Child 2',
-                        },
-                        {
-                            id: '11',
-                            name: 'Child 3',
-                        },
-                    ],
-                },
-                {
-                    id: '8',
-                    name: 'Hello',
-                },
-            ],
-        },
-        {
-            id: '4',
-            name: 'World',
-        },
-        {
-            id: '5',
-            name: 'Something something',
-        },
-    ],
+const testData = {
+    id: '0',
+    name: 'Bộ pháp điển',
+    children: jdChuDe.map((cd) => ({ id: cd.Value, name: cd.Text, children: [] })),
 };
 
-const test = jdChuDe.map((cd) => ({ id: cd.STT, name: cd.Text } as RenderTree)) as RenderTree[];
+for (let i = 0; i < jdDeMuc.length; i++) {
+    for (let j = 0; j < testData.children.length; j++) {
+        if (jdDeMuc[i].ChuDe === testData.children[j].id) {
+            testData.children[j].children = [
+                ...testData.children[j].children,
+                {
+                    id: jdDeMuc[i].Value,
+                    name: jdDeMuc[i].Text,
+                    children: [],
+                },
+            ];
+        }
+    }
+}
 
 const CustomizedTreeView = () => {
-    const renderTree = (nodes: RenderTree) => (
+    const renderTree = (nodes) => (
         <StyledTreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
             {Array.isArray(nodes.children) ? nodes.children.map((node) => renderTree(node)) : null}
         </StyledTreeItem>
     );
 
     return (
-        <Box sx={{ minHeight: 270, flexGrow: 1, maxWidth: 300 }}>
+        <Box sx={{ maxHeight: 270, flexGrow: 1, maxWidth: '100%' }}>
             <TreeView
                 aria-label="customized"
                 defaultExpanded={['1']}
@@ -146,18 +105,14 @@ const CustomizedTreeView = () => {
                 defaultEndIcon={<CloseSquare />}
                 sx={{ overflowX: 'hidden' }}
             >
-                {renderTree(test)}
+                {renderTree(testData)}
             </TreeView>
         </Box>
     );
 };
 
 const PhapDien = () => {
-    return (
-        <div>
-            <CustomizedTreeView />
-        </div>
-    );
+    return <CustomizedTreeView />;
 };
 
 export default PhapDien;

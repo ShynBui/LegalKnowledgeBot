@@ -11,13 +11,7 @@ import Typography from '@mui/material/Typography';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 
-interface TabPanelProps {
-    children?: React.ReactNode;
-    index: number;
-    value: number;
-}
-
-function CustomTabPanel(props: TabPanelProps) {
+function CustomTabPanel(props) {
     const { children, value, index, ...other } = props;
 
     return (
@@ -37,7 +31,7 @@ function CustomTabPanel(props: TabPanelProps) {
     );
 }
 
-function a11yProps(index: number) {
+function a11yProps(index) {
     return {
         id: `simple-tab-${index}`,
         'aria-controls': `simple-tabpanel-${index}`,
@@ -45,7 +39,7 @@ function a11yProps(index: number) {
 }
 
 const style = {
-    position: 'absolute' as 'absolute',
+    position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
@@ -56,12 +50,9 @@ const style = {
     borderRadius: 3,
 };
 
-const AuthModal: React.FC<{
-    open: boolean;
-    handleClose: any;
-}> = ({ open, handleClose }) => {
+const AuthModal = ({ open, handleClose }) => {
     const [value, setValue] = useState(0);
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
