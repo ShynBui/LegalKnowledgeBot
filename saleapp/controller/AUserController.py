@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request
+from flask_cors import cross_origin
 from flask_jwt_extended import create_access_token
 
 from saleapp import app
@@ -27,6 +28,7 @@ def user_serializer(user):
 
 
 @app.route('/api/login', methods = ["POST"])
+@cross_origin()
 def a_user_login():
     username = request.json.get("username", None)
     password = request.json.get("password", None)
@@ -34,4 +36,4 @@ def a_user_login():
         return jsonify({"msg": "Bad username or password"}), 401
 
     access_token = create_access_token(identity=username)
-    return jsonify(access_token=access_token)
+    return jsonify(access_token)
