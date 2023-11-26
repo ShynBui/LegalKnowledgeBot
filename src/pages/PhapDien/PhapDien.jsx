@@ -6,7 +6,9 @@ import Collapse from '@mui/material/Collapse';
 import { alpha, styled } from '@mui/material/styles';
 import { TreeView } from '@mui/x-tree-view/TreeView';
 import { TreeItem, treeItemClasses } from '@mui/x-tree-view/TreeItem';
-import { jdChuDe, jdDeMuc } from './data';
+import jdDeMuc from './data_demuc';
+import jdChuDe from './data_chude';
+import { Link } from 'react-router-dom';
 
 function MinusSquare(props) {
     return (
@@ -70,7 +72,8 @@ const StyledTreeItem = styled(CustomTreeItem)(({ theme }) => ({
 const testData = {
     id: '0',
     name: 'Bộ pháp điển',
-    children: jdChuDe.map((cd) => ({ id: cd.Value, name: cd.Text, children: [] })),
+    children: jdChuDe.map((cd) => ({ id: cd.Value, name: cd.Text, children: [], isChuDe: true })),
+    isChuDe: true,
 };
 
 for (let i = 0; i < jdDeMuc.length; i++) {
@@ -82,6 +85,7 @@ for (let i = 0; i < jdDeMuc.length; i++) {
                     id: jdDeMuc[i].Value,
                     name: jdDeMuc[i].Text,
                     children: [],
+                    isChuDe: false,
                 },
             ];
         }
@@ -90,7 +94,20 @@ for (let i = 0; i < jdDeMuc.length; i++) {
 
 const CustomizedTreeView = () => {
     const renderTree = (nodes) => (
-        <StyledTreeItem key={nodes.id} nodeId={nodes.id} label={nodes.name}>
+        <StyledTreeItem
+            key={nodes.id}
+            nodeId={nodes.id}
+            label={
+                <>
+                    <span>{nodes.name}</span>
+                    {!nodes.isChuDe && (
+                        <Link to={`/phap-dien/${nodes.id}`} style={{ marginLeft: 10, color: 'green' }}>
+                            (Xem chi tiết)
+                        </Link>
+                    )}
+                </>
+            }
+        >
             {Array.isArray(nodes.children) ? nodes.children.map((node) => renderTree(node)) : null}
         </StyledTreeItem>
     );

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Box, TextField, Button, Typography, Avatar, Grid, Paper } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 
@@ -12,29 +12,34 @@ const Chat = () => {
 
     const handleSend = () => {
         if (input.trim() !== '') {
-            setMessages([
-                ...messages,
-                { id: messages.length + 1, text: input.trim(), sender: 'user' },
-                { id: messages.length + 2, text: 'Ok', sender: 'bot', refs: ['Chủ đề 2', 'Chủ đề 6 đề mục 4'] },
-            ]);
+            setMessages([...messages, { id: messages.length + 1, text: input.trim(), sender: 'user' }]);
             setInput('');
+
+            // Send to api and get response
+            setTimeout(() => {
+                let response = {
+                    text: 'ok',
+                    refs: ['Chủ đề 2', 'Chủ đề 6 đề mục 4'],
+                };
+                setMessages([
+                    ...messages,
+                    { id: messages.length + 1, text: input.trim(), sender: 'user' },
+                    { id: messages.length + 1, sender: 'bot', ...response },
+                ]);
+            }, 1000);
         }
     };
 
     return (
         <Box
             sx={{
-                height: '100vh',
+                height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
                 bgcolor: 'grey.200',
             }}
         >
-            <Box sx={{ flexGrow: 1, overflow: 'auto', p: 2 }}>
-                {messages.map((message) => (
-                    <Message key={message.id} message={message} />
-                ))}
-            </Box>
+            <MessageView messages={messages} />
             <Box
                 sx={{
                     display: 'flex',
@@ -88,6 +93,23 @@ const Chat = () => {
                     </Grid>
                 </Grid>
             </Box>
+        </Box>
+    );
+};
+
+const MessageView = ({ messages }) => {
+    useEffect(() => {
+        messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }, [messages]);
+
+    const messagesEndRef = useRef(null);
+
+    return (
+        <Box sx={{ flexGrow: 1, overflow: 'auto', p: 2 }}>
+            {messages.map((message) => (
+                <Message key={message.id} message={message} />
+            ))}
+            <div ref={messagesEndRef} />
         </Box>
     );
 };
