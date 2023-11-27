@@ -40,10 +40,10 @@ def register():
 def user_load(user_id):
     return dao.get_user_by_id(user_id=user_id)
 
-
 app.register_blueprint(api, url_prefix='/api')
 
 
-if __name__ == "__main__":
 
-    app.run(debug=True, port=5050)
+
+if __name__ == "__main__":
+    app.run(debug=True, host="localhost", port=5050)
