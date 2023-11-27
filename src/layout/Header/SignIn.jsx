@@ -5,15 +5,16 @@ import cookie from 'react-cookies';
 
 import { useReducer, useState } from 'react';
 import MyUserReducer from '@c/MyUserReducer';
-import { post } from '~/utils/request';
+import { get,post } from '~/utils/request';
 
 const SignIn = () => {
     const [user, dispatch] = useReducer(MyUserReducer, cookie.load('user') || null);
     const [formDataLogin, setFormDataLogin] = useState({
-        username: 'test',
-        password: '123',
+        username: '',
+        password: '',
     });
-
+    const [infoUser, setInfoUser] = useState()
+    console.log(formDataLogin)
     const handleSubmitLogin = async (e) => {
         e.preventDefault();
 
@@ -21,26 +22,23 @@ const SignIn = () => {
             try {
                 let res = await post('/api/login', formDataLogin);
 
-                console.log(res.data);
+                console.log("res" , res.data);
                 cookie.save('token', res.data);
 
                 const headers = {
-                    Authorization: cookie.load('token'),
+                    Authorization: `Bearer ${cookie.load('token')}`,
                 };
+                console.log(headers);
+                const data = await get('/api/current-user', {
+                    headers: headers,
+                });
 
-                // const data = await get('/api/current-user/', {
-                //     headers: headers,
-                // });
-                // console.log(data);
-                // setInfoUserLogin({
-                //     name: data.data.ten,
-                //     email: data.data.email,
-                //     nganhtml: data.data.nganh,
-                //     avt: data.data.avatar,
-                // });
-                // cookie.save('user', data);
-                // setUserActive(true);
-                // setShowModal(false);
+                console.log("data",data);
+                setInfoUser({
+                    name: data.data.name, 
+                });
+                cookie.save('user', data);
+               
 
                 dispatch({
                     type: 'login',
@@ -48,7 +46,6 @@ const SignIn = () => {
                 });
             } catch (err) {
                 console.error(err);
-                alert('Sai thông tin đăng nhập!');
             }
         };
 
@@ -62,11 +59,12 @@ const SignIn = () => {
                 <form className="d-flex flex-column g-5" onSubmit={handleSubmitLogin}>
                     <TextField
                         type="text"
-                        id="email"
-                        name="email"
-                        label="Email Address"
-                        placeholder="me@example.com"
+                        id="username"
+                        name="username"
+                        label="Tài khoản"
+                        placeholder="Tài khoản của bạn"
                         variant="outlined"
+                        onChange={(e) => setFormDataLogin({...formDataLogin,username: e.target.value})}
                     />
                     <TextField
                         type="password"
@@ -74,6 +72,7 @@ const SignIn = () => {
                         name="password"
                         label="Mật khẩu"
                         placeholder="••••••••••"
+                        onChange={(e) => setFormDataLogin({...formDataLogin,password: e.target.value})}
                     />
                     <Button type="submit" variant="contained">
                         Đăng nhập

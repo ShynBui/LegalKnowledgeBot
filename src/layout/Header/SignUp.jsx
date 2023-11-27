@@ -16,6 +16,14 @@ const SignUp = () => {
                         variant="outlined"
                     />
                     <TextField
+                        type="email"
+                        id="username"
+                        name="username"
+                        label="Username"
+                        placeholder="User name..."
+                        variant="outlined"
+                    />
+                    <TextField
                         type="password"
                         id="password"
                         name="password"
