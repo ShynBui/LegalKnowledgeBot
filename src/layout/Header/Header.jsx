@@ -1,5 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import MyUserReducer from '@c/MyUserReducer';
+import { useReducer } from 'react';
+import cookie from 'react-cookies';
 
 import Button from '@mui/material/Button';
 
@@ -13,6 +16,11 @@ const Header = () => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const [user, dispatch] = useReducer(MyUserReducer, cookie.load('user') || null);
+
+    useEffect(() => {
+        setOpen(false);
+    }, [user]);
 
     return (
         <header className={cx('wrapper', 'w-100 flex-center justify-content-between top-0 position-fixed z-2')}>
@@ -23,9 +31,22 @@ const Header = () => {
                 </button>
             </Link>
             <div className="d-flex g-5">
-                <Button variant="outlined" onClick={handleOpen}>
-                    Đăng nhập
-                </Button>
+                {user ? (
+                    <Button
+                        variant="outlined"
+                        onClick={() => {
+                            dispatch({
+                                type: 'logout',
+                            });
+                        }}
+                    >
+                        Đăng xuất
+                    </Button>
+                ) : (
+                    <Button variant="outlined" onClick={handleOpen}>
+                        Đăng nhập
+                    </Button>
+                )}
                 <AuthModal open={open} handleClose={handleClose} />
             </div>
         </header>

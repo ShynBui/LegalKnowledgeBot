@@ -5,7 +5,7 @@ import cookie from 'react-cookies';
 
 import { useReducer, useState } from 'react';
 import MyUserReducer from '@c/MyUserReducer';
-import { get,post } from '~/utils/request';
+import { get, post } from '~/utils/request';
 
 const SignIn = () => {
     const [user, dispatch] = useReducer(MyUserReducer, cookie.load('user') || null);
@@ -13,8 +13,8 @@ const SignIn = () => {
         username: '',
         password: '',
     });
-    const [infoUser, setInfoUser] = useState()
-    console.log(formDataLogin)
+    const [infoUser, setInfoUser] = useState();
+    console.log(formDataLogin);
     const handleSubmitLogin = async (e) => {
         e.preventDefault();
 
@@ -22,7 +22,7 @@ const SignIn = () => {
             try {
                 let res = await post('/api/login', formDataLogin);
 
-                console.log("res" , res.data);
+                console.log('res', res.data);
                 cookie.save('token', res.data);
 
                 const headers = {
@@ -33,12 +33,10 @@ const SignIn = () => {
                     headers: headers,
                 });
 
-                console.log("data",data);
                 setInfoUser({
-                    name: data.data.name, 
+                    name: data.data.name,
                 });
-                cookie.save('user', data);
-               
+                cookie.save('user', data.data);
 
                 dispatch({
                     type: 'login',
@@ -64,7 +62,7 @@ const SignIn = () => {
                         label="Tài khoản"
                         placeholder="Tài khoản của bạn"
                         variant="outlined"
-                        onChange={(e) => setFormDataLogin({...formDataLogin,username: e.target.value})}
+                        onChange={(e) => setFormDataLogin({ ...formDataLogin, username: e.target.value })}
                     />
                     <TextField
                         type="password"
@@ -72,7 +70,7 @@ const SignIn = () => {
                         name="password"
                         label="Mật khẩu"
                         placeholder="••••••••••"
-                        onChange={(e) => setFormDataLogin({...formDataLogin,password: e.target.value})}
+                        onChange={(e) => setFormDataLogin({ ...formDataLogin, password: e.target.value })}
                     />
                     <Button type="submit" variant="contained">
                         Đăng nhập

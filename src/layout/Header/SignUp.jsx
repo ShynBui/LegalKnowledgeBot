@@ -16,7 +16,7 @@ const SignUp = () => {
                         variant="outlined"
                     />
                     <TextField
-                        type="email"
+                        type="text"
                         id="username"
                         name="username"
                         label="Username"
