@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import { useSpring, animated } from '@react-spring/web';
 import SvgIcon from '@mui/material/SvgIcon';
@@ -9,6 +9,7 @@ import { TreeItem, treeItemClasses } from '@mui/x-tree-view/TreeItem';
 import jdDeMuc from './data_demuc';
 import jdChuDe from './data_chude';
 import { Link } from 'react-router-dom';
+import { get } from '~/utils/request';
 
 function MinusSquare(props) {
     return (
@@ -69,29 +70,6 @@ const StyledTreeItem = styled(CustomTreeItem)(({ theme }) => ({
     },
 }));
 
-const testData = {
-    id: '0',
-    name: 'Bộ pháp điển',
-    children: jdChuDe.map((cd) => ({ id: cd.Value, name: cd.Text, children: [], isChuDe: true })),
-    isChuDe: true,
-};
-
-for (let i = 0; i < jdDeMuc.length; i++) {
-    for (let j = 0; j < testData.children.length; j++) {
-        if (jdDeMuc[i].ChuDe === testData.children[j].id) {
-            testData.children[j].children = [
-                ...testData.children[j].children,
-                {
-                    id: jdDeMuc[i].Value,
-                    name: jdDeMuc[i].Text,
-                    children: [],
-                    isChuDe: false,
-                },
-            ];
-        }
-    }
-}
-
 const CustomizedTreeView = () => {
     const renderTree = (nodes) => (
         <StyledTreeItem
@@ -112,6 +90,39 @@ const CustomizedTreeView = () => {
         </StyledTreeItem>
     );
 
+    const [data, setData] = useState({
+        id: '0',
+        name: 'Bộ pháp điển',
+        children: [],
+        isChuDe: true,
+    });
+
+    useEffect(() => {
+        (async () => {
+            let chu_de = await get('/chu_de_phap_dien');
+            let de_muc = await get('/de_muc_phap_dien');
+
+            setData({
+                ...data,
+                children: (() => {
+                    let cmpFn = (a, b) => (a.stt < b.stt ? -1 : a.stt > b.stt ? 1 : 0);
+                    let tmp = chu_de;
+                    tmp.sort(cmpFn);
+                    return tmp.map((cd) => ({
+                        id: cd.id,
+                        name: cd.ten_chu_de,
+                        children: (() => {
+                            let tmp = de_muc.filter((dm) => dm.chu_de_id == cd.id);
+                            tmp.sort(cmpFn);
+                            return tmp.map((d) => ({ id: d.id, name: d.ten_chu_de, children: [], isChuDe: false }));
+                        })(),
+                        isChuDe: true,
+                    }));
+                })(),
+            });
+        })();
+    }, []);
+
     return (
         <Box sx={{ maxHeight: 270, flexGrow: 1, maxWidth: '100%' }}>
             <TreeView
@@ -122,7 +133,7 @@ const CustomizedTreeView = () => {
                 defaultEndIcon={<CloseSquare />}
                 sx={{ overflowX: 'hidden' }}
             >
-                {renderTree(testData)}
+                {renderTree(data)}
             </TreeView>
         </Box>
     );

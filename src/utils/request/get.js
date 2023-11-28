@@ -1,9 +1,8 @@
 import { request, HEADER } from './header';
 
 const get = async (path, options = {}, headerOptions = {}) => {
-    const get = await request.get(path, options, { ...HEADER, ...headerOptions });
-    return get;
+    const response = await request.get(path, options, { ...HEADER, ...headerOptions });
+    return response.data;
 };
 
 export default get;
-
