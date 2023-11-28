@@ -1,18 +1,37 @@
 from flask import render_template, request, redirect, session, jsonify, url_for
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, current_user, logout_user, login_required
 from saleapp import app, login
 import dao
 from saleapp.routes.api import api
 import cloudinary.uploader
 @app.route("/")
+@login_required
 def index():
-    return render_template("index.html")
+    user = dao.get_user_by_id(current_user.id)
+    return render_template("index.html", user=user)
+
+
+@app.route("/user_login", methods=['get', 'post'])
+def user_login():
+    err_msg = ''
+
+    if request.method.__eq__('POST'):
+        username = request.form.get('username')
+        password = request.form.get('password')
+        user = dao.check_login(username, password)
+        print(user)
+        if user:
+            login_user(user=user)
+            return redirect(url_for('index'))
+        else:
+            err_msg = 'Username hoac password k chinh xac'
+    return render_template('login.html', err_msg=err_msg)
+
 
 @app.route("/register", methods=["get", "post"])
 def register():
     if session.get("user"):
         return redirect(request.url)
-
     err_msg = ""
     if request.method == "POST":
         name = request.form.get("name")
@@ -46,4 +65,5 @@ app.register_blueprint(api, url_prefix='/api')
 
 
 if __name__ == "__main__":
+    from saleapp.admin import *
     app.run(debug=True, host="localhost", port=5050)

@@ -28,7 +28,21 @@ def check_login(username, password):
     return User.query.filter(User.username == username,
                              User.password == password).first()
 def get_user_by_id(user_id):
-    return User.query.get(user_id)
+    return User.query.filter(User.id.__eq__(user_id)).first()
+
 
 def get_user_by_username(username):
     return User.query.filter(User.username.__eq__(username.strip())).first()
+
+
+def get_chu_de_phap_dien():
+    return ChuDePhapDien.query.all()
+
+def get_de_muc_phap_dien():
+    return DeMucPhapDien.query.all()
+
+def get_all_chuong_va_dieu():
+    return ChuongVaDieuPhapDien.query.all()
+
+def get_all_thuat_ngu():
+    return ThuatNgu.query.all()

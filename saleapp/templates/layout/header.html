@@ -1,8 +1,84 @@
 {% block css %}
-
+<link href="{{ url_for('static', filename='css/index.css') }}"
+      rel="stylesheet">
 {% endblock %}
 
-<h1>qwd</h1>
+<section id="sidebar">
+    <a href="#" class="brand"><i class='bx bxs-smile icon'></i> CodeHeroes</a>
+    <ul class="side-menu">
+        <li><a href="#" class="active"><i class='bx bxs-dashboard icon'></i> Trang chủ </a></li>
+        <li class="divider" data-text="Hệ thống">Hệ thống</li>
+        <li>
+            <a href="#"><i class='bx bxs-inbox icon'></i> Bài tập <i class='bx bx-chevron-right icon-right'></i></a>
+            <ul class="side-dropdown">
+                <li><a href="#">True_Fasle</a></li>
+                <li><a href="#">Nhiều đáp án</a></li>
+                <li><a href="#">Một đáp án</a></li>
+                <li><a href="#">Điền chỗ trống</a></li>
+            </ul>
+        </li>
+        <li><a href="#"><i class='bx bxs-chart icon'></i> Thống kê</a></li>
+        <li><a href="#"><i class='bx bxs-widget icon'></i> Trò chơi</a></li>
+        <li class="divider" data-text="HỖ TRỢ">HỆ THỐNG HỖ TRỢ</li>
+        <!--			<i class='bx '></i>-->
+
+        <li><a href="#"><i class='bx bxs-message-dots icon'></i>Chat</a></li>
+        <li>
+            <a href="#"><i class='bx bxs-notepad icon'></i> Liên lạc <i class='bx bx-chevron-right icon-right'></i></a>
+            <ul class="side-dropdown">
+                <li><a href="#">Basic</a></li>
+                <li><a href="#">Select</a></li>
+                <li><a href="#">Checkbox</a></li>
+                <li><a href="#">Radio</a></li>
+            </ul>
+        </li>
+    </ul>
+    <div class="ads">
+        <div class="wrapper">
+            <a href="#" class="btn-upgrade">Thời Khóa Biểu</a>
+            <p>Xem  <span>thời khóa biểu</span> của bạn <span></span></p>
+        </div>
+    </div>
+</section>
+<section id="content">
+    <nav>
+        <i class='bx bx-menu toggle-sidebar'></i>
+        <form action="#">
+            <div class="form-group">
+                <input type="text" placeholder="Search...">
+                <i class='bx bx-search icon'></i>
+            </div>
+        </form>
+        <a href="#" class="nav-link">
+            <i class='bx bxs-bell icon'></i>
+
+            <span class="badge">5</span>
+        </a>
+        <a href="#" class="nav-link">
+            <i class='bx bxs-message-square-dots icon'></i>
+            <span class="badge">8</span>
+        </a>
+        <span class="divider"></span>
+        <div class="profile">
+            {% if current_user.is_authenticated %}
+            {% if current_user.avatar %}
+            <img src="{{ current_user.avatar }}" alt="{{current_user.name}}">
+            {% else %}Pro
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cGVvcGxlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                 alt="">
+
+            {%endif%}
+            <ul class="profile-link">
+                <li><a href="#"><i class='bx bxs-user-circle icon'></i> Profile</a></li>
+                <li><a href="#"><i class='bx bxs-cog'></i> Settings</a></li>
+                <li><a href=""><i class='bx bxs-log-out-circle'></i> Logout</a></li>
+            </ul>
+            {% else %}
+            <div><a href="#">Đăng nhập</a></div>
+            {%endif%}
+        </div>
+    </nav>
+</section>
 {% block script %}
 
 {% endblock %}

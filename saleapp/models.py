@@ -73,10 +73,27 @@ class ChuongVaDieuPhapDien(db.Model):
     def __str__(self):
         return str(self.chi_muc)
 
+class ThuatNgu(BaseModel):
+    __tablename__ = 'thuat_ngu'
+    __table_args__ = {'extend_existing': True}
+
+    thuat_ngu = Column(Text)
+    mo_ta = Column(Text)
+    nguon = Column(Text)
+    link = Column(Text)
+    tinh = Column(String(255))
+
+
+    def __str__(self):
+        return str(self.thuat_ngu)
+
+
+
+
 if __name__ == '__main__':
     with app.app_context():
-        db.drop_all()
-        db.session.commit()
+        # db.drop_all()
+        # db.session.commit()
         db.create_all()
         db.session.commit()
 
