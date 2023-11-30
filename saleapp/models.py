@@ -15,6 +15,9 @@ class UserRole(UserEnum):
     ADMIN = 1
     USER = 2
 
+
+
+
 class User(BaseModel, UserMixin):
     __tablename__ = 'user'
     __table_args__ = {'extend_existing': True}
@@ -63,7 +66,7 @@ class ChuongVaDieuPhapDien(db.Model):
 
     id = Column(String(255), primary_key=True)
     chi_muc = Column(Integer)
-    mapc = Column(Integer)
+    mapc = Column(String(255))
     ten = Column(String(255))
     chu_de_id = Column(String(255), ForeignKey('chu_de_phap_dien.id'))
     de_muc_id = Column(String(255), ForeignKey('de_muc_phap_dien.id'))
@@ -81,6 +84,7 @@ class ThuatNgu(BaseModel):
     mo_ta = Column(Text)
     nguon = Column(Text)
     link = Column(Text)
+    label = Column(Integer)
     tinh = Column(String(255))
 
 
