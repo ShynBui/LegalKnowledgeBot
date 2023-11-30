@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
     return (
-        <div
+        <>
+         <img src="src/asset/banner.png" alt="" />
+         <div
             style={{
                 display: 'flex',
                 gap: 50,
@@ -34,7 +36,15 @@ const Home = () => {
                     <span>Quy phạm pháp luật</span>
                 </Button>
             </Link>
+            <Link to="/thuatngu">
+                <Button variant="outlined" sx={{ display: 'flex', flexDirection: 'column' }}>
+                    <ArticleIcon sx={{ fontSize: 100 }} />
+                    <span>Thuật ngữ</span>
+                </Button>
+            </Link>
         </div>
+        </>
+       
     );
 };
 
