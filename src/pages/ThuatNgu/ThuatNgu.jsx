@@ -58,7 +58,7 @@ const ThuatNgu = () => {
         setSearchTerm(value);
     };
 
-    // Filter the list based on the search term
+
     const filteredList = listThuatNgu.filter((thuatngu) =>
         thuatngu.thuat_ngu.toLowerCase().includes(searchTerm.toLowerCase()),
     );
@@ -76,7 +76,7 @@ const ThuatNgu = () => {
                     <table style={{ borderCollapse: 'collapse', width: '100%' }}>
                         <thead>
                             <tr>
-                                <th style={{ padding: '8px', border: '1px solid #ddd' }}>Thuật ngữ</th>
+                                <th  style={{ padding: '8px', border: '1px solid #ddd' }}>Thuật ngữ</th>
                                 <th style={{ padding: '8px', border: '1px solid #ddd' }}>Nguồn</th>
                                 <th style={{ padding: '8px', border: '1px solid #ddd' }}>Hiệu lực</th>
                             </tr>

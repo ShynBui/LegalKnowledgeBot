@@ -2,7 +2,7 @@ import axios from 'axios';
 import cookie from 'react-cookies';
 
 export const request = axios.create({
-    baseURL: 'http://localhost:5050/api',
+    baseURL: 'http://localhost:5051/api',
 });
 
 export const HEADER = {

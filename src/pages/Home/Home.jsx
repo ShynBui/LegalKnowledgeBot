@@ -47,9 +47,10 @@ const Home = () => {
                                 marginTop: '40px',
                             }}
                         >
-                            <span style={{ color: '#56AED4', fontSize: '22px', fontWeight: '510' }}>
+                            <span className='text-lg' style={{ color: '#56AED4', fontSize: '22px', fontWeight: '510' }}>
                                 Hệ thống hỏi đáp
                             </span>
+                            <div className='underline text-lg'>TEst</div>
                             <h1
                                 style={{
                                     fontSize: '16px',
@@ -63,7 +64,7 @@ const Home = () => {
                         </div>
                     </Link>
                     <Link
-                        to="/phap-dien"
+                        to="/phapdien"
                         style={{ width: '200px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
                     >
                         <Button

@@ -4,11 +4,16 @@ import SendIcon from '@mui/icons-material/Send';
 
 const Chat = () => {
     const [input, setInput] = useState('');
+ 
     const [messages, setMessages] = useState([
         { id: 1, text: 'Chào bạn!', sender: 'bot' },
         { id: 2, text: 'Xin chào!', sender: 'user' },
         { id: 3, text: 'Tôi có thể giúp gì cho bạn?', sender: 'bot' },
     ]);
+
+
+    const [userMessages, setUserMessages] = useState([])
+    const [botMessages, setBotMessages] = useState([])
 
     const handleSend = () => {
         if (input.trim() !== '') {
@@ -18,14 +23,14 @@ const Chat = () => {
             setTimeout(() => {
                 let response = {
                     text: 'ok',
-                    refs: ['Chủ đề 2', 'Chủ đề 6 đề mục 4'],
+                    // refs: ['Chủ đề 2', 'Chủ đề 6 đề mục 4'],
                 };
                 setMessages([
                     ...messages,
                     { id: messages.length + 1, text: input.trim(), sender: 'user' },
                     { id: messages.length + 1, sender: 'bot', ...response },
                 ]);
-            }, 1000);
+            }, 100);
         }
     };
 
@@ -76,6 +81,7 @@ const Chat = () => {
                             value={input}
                             onChange={(e) => {
                                 setInput(e.target.value);
+                                setUserMessages(e.target.value);
                             }}
                         />
                     </Grid>
@@ -143,7 +149,7 @@ const Message = ({ message }) => {
                     }}
                 >
                     <Typography variant="body1">{message.text}</Typography>
-                    {isBot && message.refs && (
+                    {/* {isBot && message.refs && (
                         <Box
                             sx={{
                                 display: 'flex',
@@ -157,7 +163,7 @@ const Message = ({ message }) => {
                                 <Typography key={i}>{r}</Typography>
                             ))}
                         </Box>
-                    )}
+                    )} */}
                 </Paper>
             </Box>
         </Box>
