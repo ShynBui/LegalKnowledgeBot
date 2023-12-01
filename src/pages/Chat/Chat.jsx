@@ -15,7 +15,6 @@ const Chat = () => {
             setMessages([...messages, { id: messages.length + 1, text: input.trim(), sender: 'user' }]);
             setInput('');
 
-            // Send to api and get response
             setTimeout(() => {
                 let response = {
                     text: 'ok',
