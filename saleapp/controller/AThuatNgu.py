@@ -18,6 +18,7 @@ def thuatngu_serializer(thuatngu):
         'nguon': thuatngu.nguon,
         'link': thuatngu.link,
         'tinh': thuatngu.tinh,
+        'label' : thuatngu.label
     }
 
 
