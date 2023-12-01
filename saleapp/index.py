@@ -1,14 +1,20 @@
 from flask import render_template, request, redirect, session, jsonify, url_for
 from flask_login import login_user, current_user, logout_user, login_required
-from saleapp import app, login
-import dao
+from saleapp import HOST, app, login
+from saleapp import dao
 from saleapp.routes.api import api
 import cloudinary.uploader
+
 @app.route("/")
 @login_required
 def index():
     user = dao.get_user_by_id(current_user.id)
     return render_template("index.html", user=user)
+
+
+@app.route("/test")
+def test():
+    return "test"
 
 
 @app.route("/user_login", methods=['get', 'post'])
@@ -66,4 +72,4 @@ app.register_blueprint(api, url_prefix='/api')
 
 if __name__ == "__main__":
     from saleapp.admin import *
-    app.run(debug=True, host="localhost", port=5050)
+    app.run(debug=True, host=HOST, port=5050)
