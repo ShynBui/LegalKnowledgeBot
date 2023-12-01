@@ -1,4 +1,3 @@
-nội dung  file docker-compose.yml là:
 version: '3'
 services:
   flask-server:
