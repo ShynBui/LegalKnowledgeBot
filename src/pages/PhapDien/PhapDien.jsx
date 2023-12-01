@@ -6,8 +6,6 @@ import Collapse from '@mui/material/Collapse';
 import { alpha, styled } from '@mui/material/styles';
 import { TreeView } from '@mui/x-tree-view/TreeView';
 import { TreeItem, treeItemClasses } from '@mui/x-tree-view/TreeItem';
-import jdDeMuc from './data_demuc';
-import jdChuDe from './data_chude';
 import { Link } from 'react-router-dom';
 import { get } from '~/utils/request';
 
@@ -78,47 +76,75 @@ const CustomizedTreeView = () => {
             label={
                 <>
                     <span>{nodes.name}</span>
-                    {!nodes.isChuDe && (
-                        <Link to={`/phap-dien/${nodes.id}`} style={{ marginLeft: 10, color: 'green' }}>
+                    {nodes.type !== 'Chủ đề' && (
+                        <Link to={`/phap-dien/${nodes.link}`} style={{ marginLeft: 10, color: 'green' }}>
                             (Xem chi tiết)
                         </Link>
                     )}
                 </>
             }
+            // onClick={nodes.onClick}
         >
             {Array.isArray(nodes.children) ? nodes.children.map((node) => renderTree(node)) : null}
         </StyledTreeItem>
     );
 
+    const [defaultExpand, setDefaultExpand] = useState(['0']);
     const [data, setData] = useState({
         id: '0',
         name: 'Bộ pháp điển',
         children: [],
-        isChuDe: true,
+        type: 'Chủ đề',
     });
 
     useEffect(() => {
         (async () => {
             let chu_de = await get('/chu_de_phap_dien');
             let de_muc = await get('/de_muc_phap_dien');
+            let chuong = await get('/chuong_va_dieu_phap_dien');
+
+            let cmpFn = (a, b) => (a.stt < b.stt ? -1 : a.stt > b.stt ? 1 : 0);
+            chu_de.sort(cmpFn);
+            de_muc.sort(cmpFn);
+            chuong.sort((a, b) => (a.mapc < b.mapc ? -1 : a.mapc > b.mapc ? 1 : 0));
 
             setData({
                 ...data,
-                children: (() => {
-                    let cmpFn = (a, b) => (a.stt < b.stt ? -1 : a.stt > b.stt ? 1 : 0);
-                    let tmp = chu_de;
-                    tmp.sort(cmpFn);
-                    return tmp.map((cd) => ({
-                        id: cd.id,
-                        name: cd.ten_chu_de,
-                        children: (() => {
-                            let tmp = de_muc.filter((dm) => dm.chu_de_id == cd.id);
-                            tmp.sort(cmpFn);
-                            return tmp.map((d) => ({ id: d.id, name: d.ten_chu_de, children: [], isChuDe: false }));
-                        })(),
-                        isChuDe: true,
-                    }));
-                })(),
+                children: chu_de.map((cd) => ({
+                    id: cd.id,
+                    name: cd.ten_chu_de,
+                    children: (() =>
+                        de_muc
+                            .filter((d) => d.chu_de_id == cd.id)
+                            .map((d) => ({
+                                id: d.id,
+                                name: d.ten_chu_de,
+                                link: d.id,
+                                children: (() => {
+                                    let tmp = chuong.filter((c) => c.de_muc_id === d.id);
+                                    let ch = tmp
+                                        .filter((c) => c.ten.startsWith('Chương'))
+                                        .map((c) => ({
+                                            id: c.id,
+                                            name: c.ten,
+                                            link: d.id,
+                                            children: [],
+                                            // children: tmp
+                                            //     .filter((c) => !c.ten.startsWith('Chương'))
+                                            //     .map((c) => ({
+                                            //         id: c.id,
+                                            //         name: c.ten,
+                                            //         children: [],
+                                            //         type: 'Điều',
+                                            //     })),
+                                            type: 'Chương',
+                                        }));
+                                    return ch;
+                                })(),
+                                type: 'Đề mục',
+                            })))(),
+                    type: 'Chủ đề',
+                })),
             });
         })();
     }, []);
@@ -127,7 +153,7 @@ const CustomizedTreeView = () => {
         <Box sx={{ maxHeight: 270, flexGrow: 1, maxWidth: '100%' }}>
             <TreeView
                 aria-label="customized"
-                defaultExpanded={['1']}
+                defaultExpanded={defaultExpand}
                 defaultCollapseIcon={<MinusSquare />}
                 defaultExpandIcon={<PlusSquare />}
                 defaultEndIcon={<CloseSquare />}
