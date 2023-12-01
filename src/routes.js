@@ -8,6 +8,7 @@ const Chat = lazy(() => import('@p/Chat'));
 const ChiTietPhapDien = lazy(() => import('@p/ChiTietPhapDien'));
 const QPPL = lazy(() => import('@p/QPPL'));
 const ThuatNgu = lazy(() => import('@p/ThuatNgu'));
+const PhapDienV2 = lazy(() => import('@p/PhapDienV2'));
 
 
 const routes = [
@@ -34,6 +35,10 @@ const routes = [
     {
         path: '/thuatngu',
         page: ThuatNgu,
+    },
+    {
+        path: '/phapdien',
+        page: PhapDienV2,
     },
     {
         path: '*',

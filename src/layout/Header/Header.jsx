@@ -51,7 +51,7 @@ const Header = () => {
                     <AuthModal open={open} handleClose={handleClose} />
                 </div>
             </header>
-            <header className={cx('wrapper', 'w-100 flex-center justify-content-between top-0 position-fixed z-2')} style={{marginTop:'-500px'}}>
+            <header className={cx('wrapper', 'w-100 flex-center justify-content-between top-0 position-fixed z-2')} >
                 <Link to="/" style={{ textDecoration: 'none' }}>
                     <button className={cx('logo', 'flex-center')}>
                         {/* <img src={Logo} alt="CodeHeroes" className="rounded-circle h-100 w-100" /> */}

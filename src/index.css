@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.pChuong {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16;
+}
+.pDieu {
+    font-weight: bold;
+    font-size: 14;
+}
+.pGhiChu {
+    font-style: italic;
+    font-size: 14;
+}
+.pNoiDung {
+    font-size: 14;
+}
+.pGhiChu a,
+.pDieu a {
+    color: Green;
+    font-style: oblique;
+    cursor: pointer;
+}
+sub {
+    vertical-align: sub;
+    font-size: smaller;
+}
+
+sup {
+    vertical-align: super;
+    font-size: smaller;
+}
