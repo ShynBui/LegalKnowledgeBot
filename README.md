@@ -1,8 +1,48 @@
-# React + Vite
+# LegalKnowledgeBot Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Introduction
 
-Currently, two official plugins are available:
+The Legal Knowledge Bot is a powerful tool that provides a user-friendly interface that makes it easy for users to search for and ask questions about the law.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Requirements
+
+-   Node.js 20.x or later
+-   NPM or Yarn
+
+## Installation
+
+1. Install Node.js
+2. Download or clone the project's source code:
+   `git clone https://github.com/ShynBui/LegalKnowledgeBot.git -b frontend --single-branch frontend && cd frontend`
+3. Run the following command to install the necessary dependencies:
+   `npm install`
+
+## Usage
+
+1. **Run the Development Server:** Start the development server to run and test the application locally
+   `npm run dev`
+2. **Access the Application:** Open your web browser and navigate to http://localhost:3000 to access the application interface.
+
+## Next steps
+
+* Add new features
+* Improve the user interface
+* Add tests
+
+## Links
+
+* React documentation: https://react.dev/
+* Vite documentation: https://vitejs.dev/
+
+## Author
+
+* [Nguyen Duc Hoang](https://github.com/duchoaang)
+* [Tsan Quy Thanh](https://github.com/quythanh)
+
+## License
+
+[Apache License 2.0](http://www.apache.org/licenses/)
+
+## Acknowledgments
+
+* [React](https://react.dev/)
