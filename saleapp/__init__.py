@@ -23,7 +23,7 @@ cors = CORS(app, resources={r"/api/*": {"origins": os.getenv('CORS_URL')}})
 app.secret_key = '689567gh$^^&*#%^&*^&%^*DFGH^&*&*^*'
 app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY')
 app.config[
-    "SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{os.getenv('DB_USER')}:{quote(os.getenv('DB_PASS'))}@{os.getenv('DB_HOST')}/{os.getenv('DB_NAME')}"
+    "SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{'root'}:{('123456')}@{os.getenv('DB_HOST')}/{('manguonmo2023')}"
 db = SQLAlchemy(app=app)
 login = LoginManager(app=app)
 jwt = JWTManager(app)
