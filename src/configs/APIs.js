@@ -11,7 +11,11 @@ export const endpoints = {
     "login": `/api/users/login/`,
     "current-user": `/api/current-user/`,
     "register": `/api/users/register/`,
-    "terminologies": `/api/terminologies/`
+    "terminologies": `/api/terminologies/`,
+    "cau_hoi_theo_chu_de": (chu_de_id) => `/api/cau_hoi/${chu_de_id}`,
+    "add_cau_hoi": `/api/add_cau_hoi/`,
+    "cau_hoi_theo_id": (id) => `/api/cau_hoi_by_id/${id}`,
+    "tra_loi": (id) => `/api/tra_loi/${id}`,
 
 }
 

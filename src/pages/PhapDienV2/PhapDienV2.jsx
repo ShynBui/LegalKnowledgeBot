@@ -153,8 +153,9 @@ const PhapDienV2 = () => {
         setSelectedSubTopic(event.target.value);
     };
     return (
-        <div>
-            <h1 className="title">Bộ pháp điển điện tử</h1>
+        <div >
+        
+            <h1 className="title" style={{display:'flex', justifyContent: 'center', fontSize:'30px', fontWeight:'900', marginBottom:'35px'}}>Bộ pháp điển điện tử</h1>
             <div className="search-grid">
                 <div className="relative">
                     <select onChange={changeTopic} className="select-title">
@@ -210,7 +211,7 @@ const PhapDienV2 = () => {
                             <TreeView data={filterTopic ? filterTopic : topics}></TreeView>
                         </div>
                         <div className="thuatNgu">
-                            <h2>Thuat ngu</h2>
+                            <h2>Danh sách thuật ngữ</h2>
                         </div>
                     </div>
 

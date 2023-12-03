@@ -9,5 +9,5 @@ export const HEADER = {
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',
     'Access-Control-Allow-Credentials': 'true',
-    // Authorization: cookie.load('token'),
+ 
 };

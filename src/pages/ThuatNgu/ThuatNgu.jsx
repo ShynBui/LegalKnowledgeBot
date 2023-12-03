@@ -99,7 +99,7 @@ const ThuatNgu = () => {
                                         style={{
                                             padding: '8px',
                                             border: '1px solid #ddd',
-                                            color: thuatngu.link ? 'blue' : 'black', // Change color if there's a link
+                                            color: thuatngu.link ? 'blue' : 'black',
                                             textDecoration: 'underline',
                                         }}
                                     >
