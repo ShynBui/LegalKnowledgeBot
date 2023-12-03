@@ -14,6 +14,7 @@ services:
       - IS_DEPLOY=true
       - HOST=0.0.0.0
       - CORS_URL=*
+      - JWT_SECRET_KEY=^*&*$!@!)(*()()
     depends_on:
       - mysql-db
   mysql-db:
