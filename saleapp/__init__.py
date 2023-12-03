@@ -30,6 +30,15 @@ jwt = JWTManager(app)
 
 
 # Cấu hình Logger
+log_file_path = 'app.log'  # Điều chỉnh đường dẫn tệp tin nếu cần
+log_format = '%(asctime)s - %(levelname)s - %(message)s'
+logging.basicConfig(filename=log_file_path, level=logging.DEBUG, format=log_format)
+
+# Ghi thông tin chi tiết về kết nối cơ sở dữ liệu vào logs
+logging.info(f"DB_USER: {os.getenv('DB_USER')}")
+logging.info(f"DB_PASS: {os.getenv('DB_PASS')}")
+logging.info(f"DB_HOST: {os.getenv('DB_HOST')}")
+logging.info(f"DB_NAME: {os.getenv('DB_NAME')}")
 
 cloudinary.config(
     cloud_name="dcjashgrj",
