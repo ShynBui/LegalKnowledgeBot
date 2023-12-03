@@ -4,6 +4,11 @@
 
 The Legal Knowledge Bot is a powerful tool that provides a user-friendly interface that makes it easy for users to search for and ask questions about the law.
 
+## Technologies
+
+-   React: JavaScript library for building user interfaces
+-   Tailwind CSS: Utility-first CSS framework for rapidly styling web pages
+
 ## Requirements
 
 -   Node.js 20.x or later
@@ -25,19 +30,20 @@ The Legal Knowledge Bot is a powerful tool that provides a user-friendly interfa
 
 ## Next steps
 
-* Add new features
-* Improve the user interface
-* Add tests
+-   Add new features
+-   Improve the user interface
+-   Add tests
 
 ## Links
 
-* React documentation: https://react.dev/
-* Vite documentation: https://vitejs.dev/
+-   React documentation: https://react.dev/
+-   Vite documentation: https://vitejs.dev/
 
 ## Author
 
-* [Nguyen Duc Hoang](https://github.com/duchoaang)
-* [Tsan Quy Thanh](https://github.com/quythanh)
+-   [Bui Tien Phat](https://github.com/ShynBui)
+-   [Nguyen Duc Hoang](https://github.com/duchoaang)
+-   [Tsan Quy Thanh](https://github.com/quythanh)
 
 ## License
 
@@ -45,4 +51,4 @@ The Legal Knowledge Bot is a powerful tool that provides a user-friendly interfa
 
 ## Acknowledgments
 
-* [React](https://react.dev/)
+-   [React](https://react.dev/)
