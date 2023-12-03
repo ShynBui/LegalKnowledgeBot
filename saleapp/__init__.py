@@ -9,6 +9,7 @@ import cloudinary
 from flask_sqlalchemy import SQLAlchemy
 import os
 from dotenv import load_dotenv
+import logging
 
 if os.getenv('IS_DEPLOY'):
     print('[DEPLOY]')
@@ -22,11 +23,13 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/api/*": {"origins": os.getenv('CORS_URL')}})
 app.secret_key = '689567gh$^^&*#%^&*^&%^*DFGH^&*&*^*'
 app.config["JWT_SECRET_KEY"] = os.getenv('JWT_SECRET_KEY')
-app.config[
-    "SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{os.getenv('DB_USER')}:{quote(os.getenv('DB_PASS'))}@{os.getenv('DB_HOST')}/{os.getenv('DB_NAME')}"
+app.config["SQLALCHEMY_DATABASE_URI"] = f"mysql+pymysql://{os.getenv('DB_USER')}:{quote(os.getenv('DB_PASS'))}@{os.getenv('DB_HOST')}/{os.getenv('DB_NAME')}"
 db = SQLAlchemy(app=app)
 login = LoginManager(app=app)
 jwt = JWTManager(app)
+
+
+# Cấu hình Logger
 
 cloudinary.config(
     cloud_name="dcjashgrj",
