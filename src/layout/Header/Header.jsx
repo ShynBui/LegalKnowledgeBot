@@ -8,24 +8,25 @@ import Button from '@mui/material/Button';
 
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
-import AuthModal from './AuthModal';
+
 import { get, post } from '~/utils/request';
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
+import CancelIcon from '@mui/icons-material/Cancel';
+import logo from '../../assets/logo.png';
+
 let cx = classNames.bind(styles);
 
 const ModalWrapper = ({ show, children }) => {
     return <div className={cx('modal-wrapper', { show })}>{children}</div>;
 };
 
-
-
 const Header = () => {
     const [showModal, setShowModal] = useState(false);
 
-    const [user, dispatch] = useReducer(MyUserReducer, cookie.load("user") || null);
+    const [user, dispatch] = useReducer(MyUserReducer, cookie.load('user') || null);
     const [infoUser, setInfoUser] = useState([]);
     const [userName, setUserName] = useState();
     const [userEmail, setUserEmail] = useState();
@@ -36,9 +37,7 @@ const Header = () => {
     const [errorMessage, setErrorMessage] = useState(false);
     const [isFormValid, setIsFormValid] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
-    const [infoUserLogin, setInfoUserLogin] = useState({
-       
-    });
+    const [infoUserLogin, setInfoUserLogin] = useState({});
     const [ErrorUserNameEmail, setErrorUserNameEmail] = useState(false);
     const [showRegister, setShowRegister] = useState(false);
     useEffect(() => {
@@ -48,80 +47,96 @@ const Header = () => {
     const handleCancel = () => {
         setShowRegister(false);
         setShowModal(false);
-    }
+    };
     const handleSubmitLogin = async (e) => {
         e.preventDefault();
 
         const process = async () => {
             try {
-           
-                let res = await post('/login', infoUserLogin)
-                
-                console.log(res)
-                cookie.save("token", res);
-                
-                
+                let res = await post('/login', infoUserLogin);
+
+                console.log(res);
+                cookie.save('token', res);
+
                 const headers = {
-                    'Authorization': `Bearer ${cookie.load("token")}`
-                  };
-      
-                  const data = await get('/current-user', {
-                    headers: headers
-                  })
-                console.log(data)
-                
-                cookie.save("user", data);
+                    Authorization: `Bearer ${cookie.load('token')}`,
+                };
+
+                const data = await get('/current-user', {
+                    headers: headers,
+                });
+                console.log(data);
+
+                cookie.save('user', data);
                 setShowModal(false);
-                
+
                 dispatch({
-                    "type": "login",
-                    "payload": data
+                    type: 'login',
+                    payload: data,
                 });
                 window.location.reload();
-                  
             } catch (err) {
                 console.error(err);
-                alert("Sai thông tin đăng nhập!" );
+                alert('Sai thông tin đăng nhập!');
             }
-        }
-        
+        };
+
         process();
     };
-    const handleSubmit = () => {
-
-    }
-    const handleLogin = () => {}
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (userPassword === confirmPassword) {
+            const formData = {
+                username : userName,
+                password : userPassword,
+                confirmPassword : confirmPassword,
+                email: userEmail,
+                name: userName
+            }
+            setShowLoading(true);
+            setErrorMessage(false);
+          
+            post('/register-user', formData)
+                .then((data) => {
+                    alert('Đăng ký thành công')
+                    setShowModal(false);
+                    setShowRegister(false);
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
+        } else setErrorMessage(true);
+    };
+  
+    const handleLogin = () => {};
 
     const handleLogout = () => {
+        window.location.href = '/';
+        dispatch({
+            type: 'logout',
+        });
+    };
 
-    }
-
-    console.log(infoUserLogin)
+    console.log(infoUserLogin);
     return (
         <>
             <ModalWrapper show={showModal}>
                 <div className={cx('modal-inner')}>
-                    <h2>Đăng nhập bằng </h2>
+                    <h2 style={{ color: '', fontWeight: '700', fontSize: '18px' }}>ĐĂNG NHẬP</h2>
                     {loginFailed && <h2 style={{ fontSize: '16px', color: 'red' }}>Tài khoản hoặc mật khẩu sai !</h2>}
                     <span className={cx('cancel', 'material-icons')} onClick={handleCancel}>
-                        cancel
+                        <CancelIcon></CancelIcon>
                     </span>
-                    <div className="d-flex g-2 justify-content-center">
-                        <div id="signInGoogle">
-                            <>
-                             
-                            </>
-                        </div>
-                    </div>
-                    <p className="mt-3">hoặc</p>
 
-                    <form >
+                    <p className="mt-3"></p>
+
+                    <form>
                         <div className="mb-3 text-start">
                             <label htmlFor="login-email" className="form-label">
                                 Tên người dùng hoặc email
                             </label>
                             <input
-                                onChange={(e) => setInfoUserLogin({...infoUserLogin, username: e.target.value})}
+                                onChange={(e) => setInfoUserLogin({ ...infoUserLogin, username: e.target.value })}
                                 type="text"
                                 className="form-control"
                                 id="login-email"
@@ -133,14 +148,14 @@ const Header = () => {
                                 Mật khẩu
                             </label>
                             <input
-                                onChange={(e) => setInfoUserLogin({...infoUserLogin, password: e.target.value})}
+                                onChange={(e) => setInfoUserLogin({ ...infoUserLogin, password: e.target.value })}
                                 type="password"
                                 className="form-control"
                                 id="login-password"
                                 placeholder="Mật khẩu..."
                             />
                         </div>
-                      
+
                         <div className="d-flex justify-content-between mt-3">
                             <div>
                                 <input type="checkbox" id="login-remember" name="login-remember" />
@@ -148,27 +163,38 @@ const Header = () => {
                             </div>
                             <Link to="/">Quên mật khẩu</Link>
                         </div>
-                        <Button onClick={handleSubmitLogin} className="w-100 mt-3">ĐĂNG NHẬP</Button>
+                        <Button
+                            variant="contained"
+                    
+                            color="info"
+                            onClick={handleSubmitLogin}
+                            className="w-100 mt-3 me-2 "
+                        >
+                            ĐĂNG NHẬP
+                        </Button>
                     </form>
-                    <p className="text-center mt-3" onClick={() => {setShowRegister(true)}}>
+                    <p
+                        className="text-center mt-3"
+                        onClick={() => {
+                            setShowRegister(true);
+                        }}
+                    >
                         Đây là lần đầu tiên của bạn?&nbsp;
-                        <b style={{ cursor: 'pointer' }} >
-                            Đăng ký ngay
-                        </b>
+                        <b style={{ cursor: 'pointer' }}>Đăng ký ngay</b>
                     </p>
                 </div>
             </ModalWrapper>
-         
+
             <ModalWrapper show={showRegister}>
                 <div className={cx('modal-inner')} style={{ height: '550px' }}>
-                    <h2>Đăng ký</h2>
+                    <h2 style={{ color: '', fontWeight: '700', fontSize: '18px' }}>Đăng ký</h2>
                     {errorMessage && (
                         <h2 style={{ fontSize: '18px', color: 'red', fontWeight: '600' }}>
                             Xác nhận mật khẩu không đúng !!
                         </h2>
                     )}
                     <span className={cx('cancel', 'material-icons')} onClick={handleCancel}>
-                        cancel
+                        <CancelIcon></CancelIcon>l
                     </span>
                     {ErrorUserNameEmail && (
                         <h2 style={{ fontSize: '18px', color: 'red', fontWeight: '600' }}>
@@ -229,7 +255,7 @@ const Header = () => {
                         <div className="d-flex justify-content-between mt-3">
                             <div>
                                 <label htmlFor="acp-policy" style={{ marginRight: '10px' }}>
-                                    Bạn đã đọc và đồng ý <Link to="/">điều khoản</Link> của Ba Tô Phở{' '}
+                                    Bạn đã đọc và đồng ý <Link to="/">điều khoản</Link> của CodeHeroes{' '}
                                 </label>
                                 <input
                                     onChange={() => setCheckbutton(!checkButton)}
@@ -240,7 +266,9 @@ const Header = () => {
                             </div>
                         </div>
 
-                        <Button type="submit" className="w-100 mt-3" disabled={!isFormValid} onClick={handleSubmit}>
+                        <Button variant="contained"
+                               
+                                color="info"  type="submit" className="w-100 mt-3 me-2"  onClick={handleSubmit}>
                             {' '}
                             <h1 className={cx('register')}>
                                 ĐĂNG KÝ{' '}
@@ -259,17 +287,11 @@ const Header = () => {
             <header className={cx('wrapper')}>
                 <div className={cx('logo')}>
                     <Link to="/">
-                        <img src="/src/asset/logo.png" alt="Logo" className="w-150 h-100" style={{borderRadius:'50%'}} />
-                        
-                     
+                        <img src={`${logo}`} alt="Logo" className="w-150 h-100" style={{ borderRadius: '50%' }} />
                     </Link>
-                    <h1 style={{fontSize:'20px'}}>CodeHeroes</h1>
+                    <h1 style={{ fontSize: '20px' }}>CodeHeroes</h1>
                 </div>
-                <div className={cx( 'd-flex align-items-center')} style={{ height: '40%',width:'100%' }}>
-                 
-                      
-
-                </div>
+                <div className={cx('d-flex align-items-center')} style={{ height: '40%', width: '100%' }}></div>
 
                 <div className={cx('actions')}>
                     {user ? (
@@ -278,14 +300,13 @@ const Header = () => {
                                 <Button className="me-5 btn btn-warning border">Diễn đàn</Button>
                             </Link>
 
-                            <Link to="/chat">
-                                <Button className="me-5 btn btn-primary border">Chat ngay</Button>
+                            <Link to="/">
+                                <Button className="me-5 btn btn-primary border">Liên hệ</Button>
                             </Link>
 
                             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
                                 <Tooltip title="Account settings">
                                     <IconButton
-                                      
                                         size="small"
                                         sx={{ ml: 2 }}
                                         aria-controls={open ? 'account-menu' : undefined}
@@ -293,18 +314,22 @@ const Header = () => {
                                         aria-expanded={open ? 'true' : undefined}
                                     >
                                         <Link style={{ color: 'black' }} to={`/profile/`}>
-                                           
-                                           
-                                        <Avatar sx={{ width: 32, height: 32 }}>
-                                            {/* <img className={cx('user_avatar')} src={user.} alt="" /> */}
-                                        </Avatar>
+                                            <Avatar sx={{ width: 32, height: 32 }}>
+                                                {/* <img className={cx('user_avatar')} src={user.} alt="" /> */}
+                                            </Avatar>
                                         </Link>
                                     </IconButton>
                                 </Tooltip>
-                                <Button style={{marginLeft:'10px'}} size="small" variant="contained" color="inherit"  onClick={handleLogout}>Logout</Button>
+                                <Button
+                                    style={{ marginLeft: '10px' }}
+                                    size="small"
+                                    variant="contained"
+                                    color="inherit"
+                                    onClick={handleLogout}
+                                >
+                                    Logout
+                                </Button>
                             </Box>
-                          
-                           
                         </>
                     ) : (
                         <>
@@ -318,13 +343,10 @@ const Header = () => {
                             >
                                 Đăng nhập
                             </Button>
-
-                           
                         </>
                     )}
                 </div>
             </header>
-    
         </>
     );
 };

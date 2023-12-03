@@ -4,12 +4,14 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import GavelIcon from '@mui/icons-material/Gavel';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import { Link } from 'react-router-dom';
+import banner from '../../assets/banner.png'
+import logo from '../../assets/logo.png'
 import styles from './Home.module.scss';
 import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
 const Home = () => {
     return (
         <>
-            <img src="src/asset/banner.png" alt="" />
+            <img src={`${banner}`} alt="" style={{ width: '100%' }} />
             <div
                 style={{
                     display: 'flex',
@@ -50,7 +52,7 @@ const Home = () => {
                             <span className='text-lg' style={{ color: '#56AED4', fontSize: '22px', fontWeight: '510' }}>
                                 Hệ thống hỏi đáp
                             </span>
-                            <div className='underline text-lg'>TEst</div>
+                       
                             <h1
                                 style={{
                                     fontSize: '16px',
@@ -103,7 +105,7 @@ const Home = () => {
                         </div>
                     </Link>
                     <Link
-                        to="/qppl"
+                        to="/timkiemthuatngu"
                         style={{ width: '200px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
                     >
                         <Button
@@ -129,7 +131,7 @@ const Home = () => {
                             }}
                         >
                             <span style={{ color: '#56AED4', fontSize: '22px', fontWeight: '510' }}>
-                                Quy phạm pháp luật
+                                Lọc Thuật Ngữ
                             </span>
                             <h1
                                 style={{
@@ -139,7 +141,7 @@ const Home = () => {
                                     marginTop: '25px',
                                 }}
                             >
-                                Hệ thống hỏi đáp tự động, giúp bạn hỏi những kiến thức về pháp luật nhanh chóng
+                                Hệ thống hỏi đáp tự động, giúp bạn lọc những thuật ngữ trong quy phạm pháp luật
                             </h1>
                         </div>
                     </Link>
@@ -187,39 +189,9 @@ const Home = () => {
                 </div>
             </div>
 
-            <div
-                className="wrapper_introduce"
-                style={{
-                    backgroundImage: 'url("src/asset/banner.png")',
-                    width: '100%',
-                    height: '300px',
-                    backgroundRepeat: 'no-repeat',
-                    clear: 'both',
-                }}
-            >
-                <section
-                    className="box"
-                    style={{
-                        display: 'block',
-                        float: 'right',
-                        clear: 'both',
-                        width: '50%',
-                        padding: '6% 4%',
-                        backgroundColor: '#2E3541',
-                        height: '100%',
-                    }}
-                >
-                    <div className="box_top"></div>
-                    <ul className="bot_main">
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </section>
-            </div>
-
-            <div className="footer" >
-                <MDBFooter bgColor="light" className="text-center text-lg-start text-muted" >
+           
+            <div className="footer" style={{width:'100%'}} >
+                <MDBFooter bgColor="light" className="text-center text-lg-start text-muted w-100" >
                     <section
                         className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
                         style={{ marginTop: '30px' }}
@@ -247,7 +219,7 @@ const Home = () => {
                     </section>
 
                     <section className="" style={{backgroundColor: '#232832',
-    color: '#FFFFFF', padding:'20px'}}>
+    color: '#FFFFFF', padding:'20px', width:'100%'}}>
                         <MDBContainer className="text-center text-md-start mt-5">
                             <MDBRow className="mt-3">
                                 <MDBCol md="3" lg="4" xl="3" className="mx-auto mb-4">

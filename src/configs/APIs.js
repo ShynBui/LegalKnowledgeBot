@@ -16,7 +16,8 @@ export const endpoints = {
     "add_cau_hoi": `/api/add_cau_hoi/`,
     "cau_hoi_theo_id": (id) => `/api/cau_hoi_by_id/${id}`,
     "tra_loi": (id) => `/api/tra_loi/${id}`,
-
+    "terminologies": `/api/terminologies/`,
+    "search": `/api/terminologies/search-paragraph/`
 }
 
 
