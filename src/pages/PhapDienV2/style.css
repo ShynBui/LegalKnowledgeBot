@@ -11,6 +11,8 @@
 
 .search-input {
     @apply border border-gray-700 text-gray-900 focus:border-gray-900 block w-full p-[1rem];
+
+    background-color: wheat;
 }
 
 .search-grid {
