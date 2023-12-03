@@ -12,9 +12,6 @@ def index():
     return render_template("index.html", user=user)
 
 
-@app.route("/test")
-def test():
-    return "test"
 
 
 @app.route("/user_login", methods=['get', 'post'])
@@ -72,4 +69,4 @@ app.register_blueprint(api, url_prefix='/api')
 
 if __name__ == "__main__":
     from saleapp.admin import *
-    app.run(debug=True, host=HOST, port=5050)
+    app.run(debug=True, host=HOST, port=5051)

@@ -43,13 +43,27 @@ def get_user_by_username(username):
 
 
 def get_chu_de_phap_dien():
-    return ChuDePhapDien.query.all()
+    return ChuDePhapDien.query.order_by(ChuDePhapDien.stt).all()
 
-def get_de_muc_phap_dien():
-    return DeMucPhapDien.query.all()
 
-def get_all_chuong_va_dieu():
-    return ChuongVaDieuPhapDien.query.all()
+def get_de_muc_phap_dien(chu_de_id):
+    return DeMucPhapDien.query.filter(DeMucPhapDien.chu_de_id.__eq__(chu_de_id)).order_by(DeMucPhapDien.stt).all()
+
+
+def get_chuong_va_dieu_theo_de_muc(de_muc_id):
+    return ChuongVaDieuPhapDien.query \
+        .filter(ChuongVaDieuPhapDien.de_muc_id.__eq__(de_muc_id)) \
+        .filter(ChuongVaDieuPhapDien.chuong_cha_id.__eq__(None)) \
+        .order_by(ChuongVaDieuPhapDien.stt) \
+        .all()
+
+
+def get_chuong_va_dieu_theo_cha(cha_id):
+    return ChuongVaDieuPhapDien.query \
+        .filter(ChuongVaDieuPhapDien.chuong_cha_id.__eq__(cha_id)) \
+        .order_by(ChuongVaDieuPhapDien.stt) \
+        .all()
+
 
 def get_all_thuat_ngu():
     return ThuatNgu.query.all()
@@ -71,3 +85,42 @@ def delete_user_by_username(username):
     except Exception as e:
         print(f"An error occurred: {str(e)}")
         return False
+
+
+def remove_escape_sequences(string):
+    escape_sequences = ['\a', '\b', '\f', '\n', '\r', '\t', '\v', '\\', '\\\\', '\"', '\?', '\ooo', '\0']
+    for i in escape_sequences:
+        string = string.replace(i, ' ')
+    return string
+
+
+def is_in(x, data_thuat_ngu_2):
+    if (x in data_thuat_ngu_2):
+        return x
+    return -1
+
+
+def add_cau_hoi(tieu_de, noi_dung, chu_de_id, user_id):
+    cauhoi = CauHoi(tieu_de_cau_hoi=tieu_de, noi_dung_cau_hoi=noi_dung, chu_de_id=chu_de_id, user_id=user_id)
+    db.session.add(cauhoi)
+    db.session.commit()
+    return cauhoi
+
+
+def get_cau_hoi_theo_chu_de(chu_de_id):
+    return CauHoi.query.filter(CauHoi.chu_de_id.__eq__(chu_de_id)).order_by(CauHoi.thoi_gian).all()
+
+
+def get_reply_of_cau_hoi(cau_hoi_id):
+    return Reply.query.filter(Reply.cau_hoi_id.__eq__(cau_hoi_id)).order_by(Reply.thoi_gian).all()
+
+
+def add_reply(noi_dung, cau_hoi_id, user_id):
+    reply = Reply(noi_dung_tra_loi=noi_dung, cau_hoi_id=cau_hoi_id, user_id=user_id)
+    db.session.add(reply)
+    db.session.commit()
+    return reply
+
+
+def get_cau_hoi_by_id(id):
+    return CauHoi.query.filter(CauHoi.id.__eq__(id)).first()

@@ -13,18 +13,18 @@ def demuc_serializer(demuc):
     return {
         'id': demuc.id,
         'stt': demuc.stt,
-        'ten_chu_de': demuc.ten_de_muc,
+        'ten_de_muc': demuc.ten_de_muc,
         'chu_de_id': demuc.chu_de_id
     }
 
 
 
 
-
-def api_de_muc_phap_dien():
-   list_demuc = dao.get_de_muc_phap_dien()
+def api_de_muc_phap_dien(chu_de_id):
+   list_demuc = dao.get_de_muc_phap_dien(chu_de_id)
    if list_demuc is not None:
        serialized_list_de_muc = [demuc_serializer(demuc) for demuc in list_demuc]
        return jsonify(serialized_list_de_muc)
+
 
 
