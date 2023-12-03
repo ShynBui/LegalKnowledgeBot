@@ -32,10 +32,10 @@ log_format = '%(asctime)s - %(levelname)s - %(message)s'
 logging.basicConfig(level=logging.DEBUG, format=log_format)
 
 # Logging DB information
-logging.info(f"DB_USER: {os.getenv('DB_USER')}")
-logging.info(f"DB_PASS: {os.getenv('DB_PASS')}")
-logging.info(f"DB_HOST: {os.getenv('DB_HOST')}")
-logging.info(f"DB_NAME: {os.getenv('DB_NAME')}")
+logging.error(f"DB_USER: {os.getenv('DB_USER')}")
+logging.error(f"DB_PASS: {os.getenv('DB_PASS')}")
+logging.error(f"DB_HOST: {os.getenv('DB_HOST')}")
+logging.error(f"DB_NAME: {os.getenv('DB_NAME')}")
 
 cloudinary.config(
     cloud_name="dcjashgrj",
