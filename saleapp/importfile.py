@@ -9,7 +9,7 @@ if __name__ == '__main__':
         db.drop_all()
         db.create_all()
 
-        with open('/home/duchoang/Workspace/TempMMM2023/backend_V2/saleapp/data/output.json', 'r') as dataFile:
+        with open('./data/output.json', 'r') as dataFile:
             dataObj = json.load(dataFile)
 
             index = {
