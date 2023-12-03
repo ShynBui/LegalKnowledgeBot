@@ -11,11 +11,10 @@ export default defineConfig({
             { find: '@p', replacement: path.resolve(__dirname, 'src/pages') },
             { find: '~', replacement: path.resolve(__dirname, 'src') },
             { find: '@a', replacement: path.resolve(__dirname, 'src/asset') },
-
         ],
     },
     build: {
-        outDir: 'build',    
+        outDir: 'build',
     },
     server: {
         host: 'localhost',
@@ -23,6 +22,6 @@ export default defineConfig({
         open: 'http://localhost:5173',
     },
     optimizeDeps: {
-        exclude: ['js-big-decimal']
-      }
+        exclude: ['js-big-decimal'],
+    },
 });

@@ -90,7 +90,7 @@ const DienDan = () => {
     console.log(listQuestions);
     return (
         <>
-            <div className="div" style={{width:'80%', margin: '0 auto'}}>
+            <div className="div" style={{ width: '80%', margin: '0 auto' }}>
                 <h1 className="text-4xl font-bold mb-6 d-flex justify-center">Diễn đàn hỏi đáp pháp luật</h1>
 
                 <div className="relative">
@@ -141,11 +141,7 @@ const DienDan = () => {
                             style={{ border: '2px solid #e8e8e8' }}
                         >
                             <div className="forum_header d-flex">
-                                <img
-                                    className="rounded-full w-12 h-12"
-                                    src="src/asset/logo.png"
-                                    alt=""
-                                />
+                                <img className="rounded-full w-12 h-12" src="src/assets/logo.png" alt="" />
                                 <div className="sub_header pl-5">
                                     <div className="header_title">{question.tieu_de}</div>
                                     <div className="header_content d-flex ">

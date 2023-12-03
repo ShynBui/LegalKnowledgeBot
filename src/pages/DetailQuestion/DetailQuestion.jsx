@@ -136,7 +136,7 @@ const DetailQuestion = () => {
                         </>
                     )}
                 </div>
-                {isAdmin && (
+                {true && (
                     <>
                         <input
                             value={addReply.noi_dung}

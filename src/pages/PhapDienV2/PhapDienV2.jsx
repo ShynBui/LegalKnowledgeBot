@@ -41,7 +41,6 @@ const PhapDienV2 = () => {
 
     useEffect(() => {
         getTopics();
-  
     }, []);
 
     useEffect(() => {
@@ -82,7 +81,7 @@ const PhapDienV2 = () => {
             console.error(ex);
         }
     };
-    
+
     const escapeRegExp = (text) => {
         return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
     };
@@ -103,15 +102,15 @@ const PhapDienV2 = () => {
                 //     /(An ninh)/g,
                 //     '<span class="highlight" style="text-decoration: underline; cursor: pointer;">$1</span>',
                 // );
-                const listThuatNguFake = ['An ninh', 'chính sách', 'Cộng hòa']; 
+                const listThuatNguFake = ['An ninh', 'chính sách', 'Cộng hòa'];
                 // console.log(listThuatNgu);
                 // const temp = listThuatNgu.map((tn, index) => {
-                    
+
                 //     console.log(tn.id)
                 // })
                 // Tìm kiếm và làm nổi bật các cụm từ trong mảng thuật ngữ
                 const regex = new RegExp(`(${listThuatNguFake.join('|')})`, 'gi');
-     
+
                 const highlightedText = text.replace(
                     regex,
                     '<span class="highlight" style="text-decoration: underline; cursor: pointer;">$1</span>',
@@ -153,9 +152,19 @@ const PhapDienV2 = () => {
         setSelectedSubTopic(event.target.value);
     };
     return (
-        <div >
-        
-            <h1 className="title" style={{display:'flex', justifyContent: 'center', fontSize:'30px', fontWeight:'900', marginBottom:'35px'}}>Bộ pháp điển điện tử</h1>
+        <div>
+            <h1
+                className="title"
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    fontSize: '30px',
+                    fontWeight: '900',
+                    marginBottom: '35px',
+                }}
+            >
+                Bộ pháp điển điện tử
+            </h1>
             <div className="search-grid">
                 <div className="relative">
                     <select onChange={changeTopic} className="select-title">

@@ -58,25 +58,31 @@ const ThuatNgu = () => {
         setSearchTerm(value);
     };
 
-
     const filteredList = listThuatNgu.filter((thuatngu) =>
         thuatngu.thuat_ngu.toLowerCase().includes(searchTerm.toLowerCase()),
     );
 
     return (
         <>
-            <header style={{display:'flex', justifyContent:'center',padding:'10px',  width:'90%', margin:'0 auto'}}>
-              
-              <img src="src/asset/thuatngu.png" alt="" />
+            <header
+                style={{ display: 'flex', justifyContent: 'center', padding: '10px', width: '90%', margin: '0 auto' }}
+            >
+                <img src="src/assets/thuatngu.png" alt="" />
             </header>
-            <div className="wrapper" style={{ display: 'flex', width: '90%', margin:'0 auto' }}>
+            <div className="wrapper" style={{ display: 'flex', width: '90%', margin: '0 auto' }}>
                 <div className="item_left" style={{ width: '100%' }}>
-                    <TextField style={{marginTop:'10px', marginBottom:'10px'}} value={searchTerm} onChange={handleSearch} required label="Tìm kiếm thuật ngữ" />
+                    <TextField
+                        style={{ marginTop: '10px', marginBottom: '10px' }}
+                        value={searchTerm}
+                        onChange={handleSearch}
+                        required
+                        label="Tìm kiếm thuật ngữ"
+                    />
 
                     <table style={{ borderCollapse: 'collapse', width: '100%' }}>
                         <thead>
                             <tr>
-                                <th  style={{ padding: '8px', border: '1px solid #ddd' }}>Thuật ngữ</th>
+                                <th style={{ padding: '8px', border: '1px solid #ddd' }}>Thuật ngữ</th>
                                 <th style={{ padding: '8px', border: '1px solid #ddd' }}>Nguồn</th>
                                 <th style={{ padding: '8px', border: '1px solid #ddd' }}>Hiệu lực</th>
                             </tr>
@@ -125,20 +131,23 @@ const ThuatNgu = () => {
                         </tbody>
                     </table>
 
-                  <div className="pagination" style={{margin: '0 auto', display:'flex', justifyContent:'center', marginTop:'10px'}}>
-                  <Stack spacing={2}>
-                        <Pagination
-                            count={Math.ceil(filteredList.length / PAGE_SIZE)}
-                            showFirstButton
-                            showLastButton
-                            shape="rounded"
-                            onChange={(e, p) => {
-                                setNumberPage(p);
-                                setSelectedTerm(null);
-                            }}
-                        />
-                    </Stack>
-                  </div>
+                    <div
+                        className="pagination"
+                        style={{ margin: '0 auto', display: 'flex', justifyContent: 'center', marginTop: '10px' }}
+                    >
+                        <Stack spacing={2}>
+                            <Pagination
+                                count={Math.ceil(filteredList.length / PAGE_SIZE)}
+                                showFirstButton
+                                showLastButton
+                                shape="rounded"
+                                onChange={(e, p) => {
+                                    setNumberPage(p);
+                                    setSelectedTerm(null);
+                                }}
+                            />
+                        </Stack>
+                    </div>
                 </div>
 
                 {selectedTerm && (

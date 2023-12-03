@@ -1,22 +1,18 @@
-
-
-
-
-
 .wrapper {
     height: 87px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     background-color: #eceff1;
+    padding: 0 30px;
 }
 
 .logo {
     height: 60px;
     width: 100%;
     display: flex;
-    margin-left: 15px;
-    h1{
+
+    h1 {
         font-size: 20px;
         font-weight: 600;
         display: flex;
@@ -28,8 +24,8 @@
 .menu {
     height: 25px;
 }
-.icon{
-    color:red;
+.icon {
+    color: red;
 }
 .sub-menu {
     position: relative;
@@ -56,7 +52,7 @@
         height: max-content;
     }
 }
-.actions{
+.actions {
     display: flex;
     width: 100%;
 }
@@ -73,7 +69,6 @@
 
     &.show {
         display: flex;
-       
     }
 }
 
@@ -87,67 +82,64 @@
     text-align: center;
     padding: 20px 40px;
     position: relative;
-    .cancel{
+    .cancel {
         position: absolute;
-        right:0;
-        top:0;
-         cursor: pointer;
+        right: 0;
+        top: 0;
+        cursor: pointer;
     }
 }
-.user_controller{
+.user_controller {
     position: relative;
-    .menu_controller{
+    .menu_controller {
         position: absolute;
         width: 200px;
         height: 200px;
-        
-        z-index:1;
-        padding:10px;
+
+        z-index: 1;
+        padding: 10px;
         border-radius: 10px;
         background-color: #ffffff;
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
-        .c_profile{
+        .c_profile {
             display: flex;
-            h1{
-                margin-left:10px;
+            h1 {
+                margin-left: 10px;
                 font-size: 15px;
             }
         }
     }
 }
 
-.loading{
-    
+.loading {
     opacity: 0.7;
     animation: spinner 1s linear infinite;
-    
 }
 @keyframes spinner {
     from {
-        transform:  rotate(0);
+        transform: rotate(0);
     }
-    to{
-        transform:  rotate(360deg);
+    to {
+        transform: rotate(360deg);
     }
-    
 }
-.register{
+.register {
     display: flex;
     font-size: 16px;
-    padding-top:3px;
-    span{
-        font-size:15px;
-        margin-left:10px;
+    padding-top: 3px;
+    span {
+        font-size: 15px;
+        margin-left: 10px;
     }
 }
-.user_avatar{
+.user_avatar {
     width: 32px;
     height: 32px;
     object-fit: contain;
     border-radius: 50%;
     cursor: pointer;
 }
-.search{
+.search {
     height: 100%;
     display: flex;
 }

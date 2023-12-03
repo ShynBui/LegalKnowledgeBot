@@ -9,7 +9,7 @@ import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-k
 const Home = () => {
     return (
         <>
-            <img src="src/asset/banner.png" alt="" />
+            <img src="src/assets/banner.png" alt="" />
             <div
                 style={{
                     display: 'flex',
@@ -47,10 +47,10 @@ const Home = () => {
                                 marginTop: '40px',
                             }}
                         >
-                            <span className='text-lg' style={{ color: '#56AED4', fontSize: '22px', fontWeight: '510' }}>
+                            <span className="text-lg" style={{ color: '#56AED4', fontSize: '22px', fontWeight: '510' }}>
                                 Hệ thống hỏi đáp
                             </span>
-                            <div className='underline text-lg'>TEst</div>
+                            <div className="underline text-lg">TEst</div>
                             <h1
                                 style={{
                                     fontSize: '16px',
@@ -190,7 +190,7 @@ const Home = () => {
             <div
                 className="wrapper_introduce"
                 style={{
-                    backgroundImage: 'url("src/asset/banner.png")',
+                    backgroundImage: 'url("./src/assets/banner.png")',
                     width: '100%',
                     height: '300px',
                     backgroundRepeat: 'no-repeat',
@@ -218,8 +218,8 @@ const Home = () => {
                 </section>
             </div>
 
-            <div className="footer" >
-                <MDBFooter bgColor="light" className="text-center text-lg-start text-muted" >
+            <div className="footer">
+                <MDBFooter bgColor="light" className="text-center text-lg-start text-muted w-full">
                     <section
                         className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
                         style={{ marginTop: '30px' }}
@@ -246,8 +246,10 @@ const Home = () => {
                         </div>
                     </section>
 
-                    <section className="" style={{backgroundColor: '#232832',
-    color: '#FFFFFF', padding:'20px'}}>
+                    <section
+                        className="w-full"
+                        style={{ backgroundColor: '#232832', color: '#FFFFFF', padding: '20px' }}
+                    >
                         <MDBContainer className="text-center text-md-start mt-5">
                             <MDBRow className="mt-3">
                                 <MDBCol md="3" lg="4" xl="3" className="mx-auto mb-4">
@@ -331,7 +333,7 @@ const Home = () => {
                         </MDBContainer>
                     </section>
 
-                    <div className="text-center p-4" style={{ backgroundColor: '#1B1F25', color:'#FFF' }}>
+                    <div className="text-center p-4" style={{ backgroundColor: '#1B1F25', color: '#FFF' }}>
                         ©2021 Hệ thống tra cứu pháp luật :
                         <a
                             className="text-reset fw-bold"
