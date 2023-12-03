@@ -12,8 +12,8 @@ from dotenv import load_dotenv
 
 if os.getenv('IS_DEPLOY'):
     print('[DEPLOY]')
-else:
-    load_dotenv()
+# else:
+#     load_dotenv()
 
 HOST = os.getenv('HOST')
 
