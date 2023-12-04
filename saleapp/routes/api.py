@@ -9,16 +9,10 @@ from saleapp.controller.AThuatNgu import *
 from saleapp.controller.ACauHoi import *
 from saleapp.controller.ATraLoi import *
 from saleapp.controller.ATimKiemThuatNgu import *
-from saleapp.controller.ASearchGG import *
-
-
+# from saleapp.controller.ASearchGG import *
 
 
 api = Blueprint('api', __name__)
-
-
-
-
 
 api.route('/login/', methods=['POST'])(api_user_login)
 api.route('/current-user/', methods=["GET"])(api_current_user)
@@ -46,4 +40,4 @@ api.route('/tra_loi/<cau_hoi_id>', methods=["GET"])(api_get_tra_loi_theo_cau_hoi
 api.route('/add_tra_loi/', methods=["POST"])(api_add_cau_tra_loi)
 
 # search gg
-api.route('/search_gg/', methods=["GET"])(api_search_gg)
+# api.route('/search_gg/', methods=["GET"])(api_search_gg)

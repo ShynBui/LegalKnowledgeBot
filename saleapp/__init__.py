@@ -1,5 +1,3 @@
-import logging
-
 from flask import Flask
 from flask_login import LoginManager
 from flask_jwt_extended import JWTManager
@@ -9,7 +7,6 @@ import cloudinary
 from flask_sqlalchemy import SQLAlchemy
 import os
 from dotenv import load_dotenv
-import logging
 
 if os.getenv('IS_DEPLOY'):
     print('[DEPLOY]')
@@ -34,3 +31,4 @@ cloudinary.config(
     api_key="398533167669176",
     api_secret="2P32JSJ8P9PTnSaJ55WujgRiqWU"
 )
+
