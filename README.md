@@ -1,5 +1,5 @@
 # LegalKnowledgeBot - Using ReactJS as Frontend Side and Python Flask as Backend Side)
-<a href "https://hethongphapluatcodeheroes.netlify.app/" />
+Deploy link: https://hethongphapluatcodeheroes.netlify.app/
 ````
 [Front-end]:https://hethongphapluatcodeheroes.netlify.app/
 [Back-end]:(https://phapluatcodeheroes.site)
