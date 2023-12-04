@@ -13,15 +13,15 @@ The Legal Knowledge Bot is a powerful tool that provides a user-friendly interfa
 
 1. Install Node.js
 2. Download or clone the project's source code:
-   `git clone https://github.com/ShynBui/LegalKnowledgeBot.git -b frontend --single-branch frontend && cd frontend`
+   ```git clone https://github.com/ShynBui/LegalKnowledgeBot.git -b frontend --single-branch frontend && cd frontend```
 3. Run the following command to install the necessary dependencies:
-   `npm install`
+   ```npm install```
 
 ## Usage
 
 1. **Run the Development Server:** Start the development server to run and test the application locally
-   `npm run dev`
-2. **Access the Application:** Open your web browser and navigate to http://localhost:3000 to access the application interface.
+   ```npm run dev```
+2. **Access the Application:** Open your web browser and navigate to `http://localhost:5173` to access the application interface.
 
 ## Next steps
 
