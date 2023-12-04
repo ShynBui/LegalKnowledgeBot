@@ -16,11 +16,11 @@ The project name "LegalKnowledgeBot" can express the main goal and function of t
 ## Setting Up the ReactJS Project:
   1. Clone the ReactJS project to your folder
   ```
-  git clone https://github.com/NganBao0206/codification_law_infiniThree.git
+  git clone https://github.com/ShynBui/LegalKnowledgeBot
   ```
   then move to the frontend folder
   ```
-  cd codification_law_infiniThree/frontend
+  cd LegalKnowledgeBot/frontend
   ```
   2. Install project dependencies
   ```
@@ -35,9 +35,9 @@ The project name "LegalKnowledgeBot" can express the main goal and function of t
 ## Setting up the Python Flask server
   1. Clone the Python Flask project
   ```
-  git clone https://github.com/NganBao0206/codification_law_infiniThree.git
+  git clone https:[//https://github.com/ShynBui/LegalKnowledgeBot](https://github.com/ShynBui/LegalKnowledgeBot)
   ```
-  3. Open `codification_law_infiniThree/backend/server` folder.
+  3. Open `LegalKnowledgeBot/backend/server` folder.
   4. Create a new file named `.env`.
   5. Open the `.env` file and set your environment variables as follows:
  
