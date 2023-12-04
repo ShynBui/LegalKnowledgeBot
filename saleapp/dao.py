@@ -5,7 +5,8 @@ from sqlalchemy import null
 
 from saleapp import db
 from saleapp.models import *
-
+from saleapp.config import PER_PAGE
+from sqlalchemy import or_, func
 
 
 def add_user(name, username, password, **kwargs):
@@ -124,3 +125,24 @@ def add_reply(noi_dung, cau_hoi_id, user_id):
 
 def get_cau_hoi_by_id(id):
     return CauHoi.query.filter(CauHoi.id.__eq__(id)).first()
+
+
+def get_terminology(kw: str = None, page: int = 1, per_page: int = PER_PAGE):
+    query = db.session.query(ThuatNgu)
+
+    if kw and kw.strip() != "":
+        query = query.filter(or_(ThuatNgu.thuat_ngu.ilike(f"%{kw}%"), ThuatNgu.mo_ta.ilike(f"%{kw}%")))
+        query = query.order_by(func.length(ThuatNgu.thuat_ngu), ThuatNgu.mo_ta)
+
+    query = query.offset((page - 1) * per_page).limit(per_page)
+
+    return query.all()
+
+
+def count_terminology(kw: str = None):
+    query = db.session.query(ThuatNgu)
+
+    if kw and kw.strip() != "":
+        query = query.filter(or_(ThuatNgu.thuat_ngu.ilike(f"%{kw}%"), ThuatNgu.mo_ta.ilike(f"%{kw}%")))
+
+    return query.count()

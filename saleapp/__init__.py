@@ -28,14 +28,6 @@ db = SQLAlchemy(app=app)
 login = LoginManager(app=app)
 jwt = JWTManager(app)
 
-# log_format = '%(asctime)s - %(levelname)s - %(message)s'
-# logging.basicConfig(level=logging.DEBUG, format=log_format)
-
-# # Logging DB information
-# logging.error(f"DB_USER: {os.getenv('DB_USER')}")
-# logging.error(f"DB_PASS: {os.getenv('DB_PASS')}")
-# logging.error(f"DB_HOST: {os.getenv('DB_HOST')}")
-# logging.error(f"DB_NAME: {os.getenv('DB_NAME')}")
 
 cloudinary.config(
     cloud_name="dcjashgrj",

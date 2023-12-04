@@ -1,19 +1,25 @@
-# LegalKnowledgeBot Backend
+# LegalKnowledgeBot
 
-## Introduction
+Develop an application to support searching and asking questions about legal knowledge based on the Legal Code and Legal Document Database#.
 
-## Requirements
+# First of all
 
-- Python 3.9 or later
+You can access the backend website that my team has deployed at the following link
 
-## Installation
+```
+https://phapluatcodeheroes.site
+```
 
-1. Install Docker
-2. Download or clone the project's source code:
-   ```
-   git clone https://github.com/ShynBui/LegalKnowledgeBot.git -b backend --single-branch backend && cd backend
-   ```
-3. Create a new file named `.env`.
+## Usage
+
+1. Clone the Python Flask project
+
+```
+git clone -b backend https://github.com/ShynBui/LegalKnowledgeBot.git backend
+```
+
+2. Open folder where clone and open `backend` folder.
+3. Create a new file named `.env` in `saleapp`.
 4. Open the `.env` file and set your environment variables as follows:
 
    ```
@@ -23,58 +29,26 @@
    DB_NAME=<your-database-name>
    HOST=localhost
    CORS_URL=http://localhost:5173
-   JWT_SECRET_KEY=n3rfq83r18fhnc12rh19dic12ndcn3u9cuwecnjc2i3uhf981h12ufn1fo1u93fhi
-   CLOUDINARY_CLOUD_NAME=dljmwib1r
-   CLOUDINARY_API_KEY=551239148838771
-   CLOUDINARY_API_SECRET=FCXYKNM3fQHa9ein5j-WJB90H0s
-   ```
+   JWT_SECRET_KEY=123312dsawq
 
-5. Run the following command:
-   ```
-   docker-compose up
-   ```
-
-## Usage
-
-1. Clone the Python Flask project
-
-```
-git clone https://github.com/NganBao0206/codification_law_infiniThree.git
-```
-
-3. Open `codification_law_infiniThree/backend/server` folder.
-4. Create a new file named `.env`.
-5. Open the `.env` file and set your environment variables as follows:
-
-   ```
-   DB_USER=<your-database-username>
-   DB_PASS=<your-database-password>
-   DB_HOST=<your-database-host>
-   DB_NAME=<your-database-name>
-   HOST=localhost
-   CORS_URL=http://localhost:5173
-   JWT_SECRET_KEY=n3rfq83r18fhnc12rh19dic12ndcn3u9cuwecnjc2i3uhf981h12ufn1fo1u93fhi
-   CLOUDINARY_CLOUD_NAME=dljmwib1r
-   CLOUDINARY_API_KEY=551239148838771
-   CLOUDINARY_API_SECRET=FCXYKNM3fQHa9ein5j-WJB90H0s
    ```
 
 ## Running the Program in VSCode
 
 1. Open _VSCode_.
 2. Go to `File -> Open Folder`.
-3. Navigate to and select the `codification_law_infiniThree/InfiniThree/server` folder.
+3. Select the folder where clone, open `backend` folder.
 4. Press `Ctrl+Shift+P` to open the Command Palette.
 5. Type and select `Python:Create Environment`.
 6. In the terminal, activate the virtual environment using the command `source .venv/bin/activate`.
 7. Install the required packages with `pip install -r requirements.txt`.
-8. Run program with `python run.py`.
+8. Run program with `python index.py`.
 
 ## Running the Program in PyCharm
 
 1. Open _PyCharm_.
 2. Go to `File -> Open...`.
-3. Select the `codification_law_infiniThree/InfiniThree/server` folder.
+3. Select the folder where clone, open `backend` folder.
 4. Go to `File` -> `Setting` -> `Project: <Project-name>` -> `Python Interpreter`.
 5. Click on the plus (+) icon in the bottom right corner to add a new Python Interpreter.
 6. Select `Virtualenv Environment` on the left.
@@ -84,8 +58,8 @@ git clone https://github.com/NganBao0206/codification_law_infiniThree.git
 10. Open the Terminal in PyCharm (`View` -> `Tool Windows` -> `Terminal`).
 11. In the terminal, activate the virtual environment using the command `source .venv/bin/activate`.
 12. Install the required packages with `pip install -r requirements.txt`.
-13. Navigate to the `run.py` file in the PyCharm Project Tool Window.
-14. Right-click on the `run.py` file and select `Run 'run'`.
+13. Navigate to the `index.py` file in the PyCharm Project Tool Window.
+14. Right-click on the `index.py` file and select `Run 'run'`.
 
 ## Prepare Database
 
@@ -133,6 +107,7 @@ You will need the following:
 # Dependencies and libraries
 
 1. Flask and related extensions:
+   <<<<<<< HEAD
 
 - Flask (3.0.0)
 - Flask-Bcrypt (1.0.1)
@@ -174,4 +149,37 @@ You will need the following:
 
 ## License
 
-[Apache License 2.0](http://www.apache.org/licenses/)
+# [Apache License 2.0](http://www.apache.org/licenses/)
+
+- Flask (3.0.0)
+- Flask-Bcrypt (1.0.1)
+- Flask-Cors (4.0.0)
+- Flask-JWT-Extended (4.5.3)
+- Flask-RESTful (0.3.10)
+- Flask-SQLAlchemy (3.1.1)
+
+2. Libraries that support data processing and calculations:
+
+- NumPy (1.26.2)
+- Pandas (2.1.3)
+- SciPy (1.11.4)
+- Scikit-learn (1.3.2)
+- sklearn-crfsuite (0.3.6)
+
+3. Libraries that support authentication, encryption, and security:
+
+- PyJWT (2.8.0)
+- Bcrypt (4.1.1)
+- Cryptography (41.0.7)
+- Werkzeug (3.0.1)
+
+4. Other supporting libraries:
+
+- Cloudinary (1.36.0)
+- Jinja2 (3.1.2)
+- MarkupSafe (2.1.3)
+- SQLAlchemy (2.0.23)
+- Tabulate (0.9.0)
+- Jenkins
+- Docker
+  > > > > > > > ab79c5e2dfb8acac58682fa2aff039a5776086c7
