@@ -1,17 +1,13 @@
 # LegalKnowledgeBot
 
-LegalKnowledgeBot is the project name for the application developed to support users in looking up and asking questions related to legal knowledge. The application will be based on the Legal Code and Legal Document Database to provide accurate and reliable information and answers. LegalKnowledgeBot helps users quickly find legal information, better understand legal regulations and norms, and provide answers to questions related to this field.
-The project name "LegalKnowledgeBot" can express the main goal and function of the application, creating clarity and understanding for users when searching and using it.
+LegalKnowledgeBot is a comprehensive application designed to assist users in looking up and asking questions related to legal knowledge. Leveraging the Legal Code and Legal Document Database, the application aims to provide accurate and reliable information and answers. LegalKnowledgeBot facilitates users in swiftly finding legal information, gaining a better understanding of legal regulations and norms, and obtaining answers to questions in the legal field.
 
-Use can see interface of website by following link: https://hethongphapluatcodeheroes.netlify.app/
-# Another
-We have deployed the project to the following 2 domains:
-````
-[Front-end]:https://hethongphapluatcodeheroes.netlify.app/
-[Back-end]: https://phapluatcodeheroes.site
-````
+**Note:** Explore the website interface by following this [link](https://hethongphapluatcodeheroes.netlify.app/).
 
-
+# Deployment
+We have deployed the project to the following two domains:
+- [Front-end](https://hethongphapluatcodeheroes.netlify.app/)
+- [Back-end](https://phapluatcodeheroes.site)
 
 ## Main Functions
 
@@ -46,7 +42,7 @@ We maintain three branches in our GitHub repository:
    - Contains the source code of the back-end system (provides RESTful API).
    - Clone with: `git clone -b backend https://github.com/ShynBui/LegalKnowledgeBot.git`
 
-For detailed instructions on installation and setup, refer to the README file in each branch.
+**Note:** For detailed instructions on installation and setup, refer to the README file in each branch. Switch branches on Github to access specific information.
 
 ## Project Structure
 
@@ -62,16 +58,16 @@ For detailed instructions on installation and setup, refer to the README file in
 
 ## How to Install
 
-1. Clone the repository:`git clone https://github.com/ShynBui/LegalKnowledgeBot.git`
+1. Clone the repository: `git clone https://github.com/ShynBui/LegalKnowledgeBot.git`
 2. Navigate to the desired branch:
-- Frontend: `git clone -b frontend https://github.com/ShynBui/LegalKnowledgeBot.git`
-- Backend: `git clone -b backend https://github.com/ShynBui/LegalKnowledgeBot.git`
+   - Frontend: `git clone -b frontend https://github.com/ShynBui/LegalKnowledgeBot.git`
+   - Backend: `git clone -b backend https://github.com/ShynBui/LegalKnowledgeBot.git`
 
-3. Follow the instructions in the respective README files for installation details.
+3. Follow the instructions in the respective `README` files for installation details.
 
 Feel free to explore each branch for more information and contribute to the development of LegalKnowledgeBot!
 
 # Authors
-  1. Bui Tien Phat
-  2. Nguyen Duc Hoang
-  3. Tsan Quy Thanh
+1. Bui Tien Phat
+2. Nguyen Duc Hoang
+3. Tsan Quy Thanh
