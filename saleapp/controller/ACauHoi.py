@@ -26,10 +26,12 @@ def cauhoi_serializer(cauhoi):
 
 
 def api_get_cau_hoi_theo_chu_de(chu_de_id):
-   list_cau_hoi = dao.get_cau_hoi_theo_chu_de(chu_de_id)
-   if list_cau_hoi is not None:
-       serialized_list_cau_hoi = [cauhoi_serializer(cau_hoi) for cau_hoi in list_cau_hoi]
-       return jsonify(serialized_list_cau_hoi)
+    import pdb
+    pdb.set_trace()
+    list_cau_hoi = dao.get_cau_hoi_theo_chu_de(chu_de_id)
+    if list_cau_hoi is not None:
+        serialized_list_cau_hoi = [cauhoi_serializer(cau_hoi) for cau_hoi in list_cau_hoi]
+        return jsonify(serialized_list_cau_hoi)
 
 
 def api_add_cau_hoi():
