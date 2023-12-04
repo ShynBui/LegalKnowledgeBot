@@ -37,6 +37,7 @@ The Legal Knowledge Bot is a powerful tool that provides a user-friendly interfa
 ## Author
 
 * [Nguyen Duc Hoang](https://github.com/duchoaang)
+* [Bui Tien Phat](https://github.com/ShynBui)
 * [Tsan Quy Thanh](https://github.com/quythanh)
 
 ## License
