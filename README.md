@@ -25,6 +25,10 @@ We have deployed the project to the following two domains:
 
 4. **Question and Answer Support:**
    - Answers users' questions about the law by extracting knowledge from currently effective legal documents.
+     
+5. **Forum**
+   - Q&A forum for users provides users with a forum for legal questions and interactions.
+
 
 ## GitHub Repository Structure
 
