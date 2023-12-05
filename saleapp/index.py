@@ -6,10 +6,10 @@ from saleapp.routes.api import api
 import cloudinary.uploader
 
 @app.route("/")
-@login_required
+
 def index():
-    user = dao.get_user_by_id(current_user.id)
-    return render_template("index.html", user=user)
+
+    return render_template("index.html")
 
 
 @app.route("/user_login", methods=['get', 'post'])
