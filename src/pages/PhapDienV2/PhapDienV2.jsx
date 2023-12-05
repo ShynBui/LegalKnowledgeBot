@@ -45,7 +45,7 @@ const PhapDienV2 = () => {
 
     useEffect(() => {
         let url = import.meta.env.VITE_PUBLIC_URL + file + '.html';
-        let url2 = import.meta.env.VITE_SERVER_URL + '/api/thuat_ngu/' + file;
+        let url2 = import.meta.env.VITE_SERVER_URL + '/api/thuat_ngu/' + file + '/';
 
         getHtml(url);
         console.log('id', url2);
