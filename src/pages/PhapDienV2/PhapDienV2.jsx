@@ -210,7 +210,7 @@ const PhapDienV2 = () => {
                                 {modalContent}
                             </Typography>
                             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                Dinh nghia
+                                Định nghĩa : Loading...
                             </Typography>
                         </Box>
                     </Modal>

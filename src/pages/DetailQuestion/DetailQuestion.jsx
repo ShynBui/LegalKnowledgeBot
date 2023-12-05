@@ -6,6 +6,10 @@ import { get, post } from '~/utils/request';
 import MyUserReducer from '@c/MyUserReducer';
 import cookie from 'react-cookies';
 import { Avatar } from '@mui/material';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import axios from 'axios';
+
 const DetailQuestion = () => {
     const { id } = useParams();
     const [user, dispatch] = useReducer(MyUserReducer, cookie.load('user') || null);
@@ -19,7 +23,6 @@ const DetailQuestion = () => {
     const [answer, setAnswer] = useState([]);
     const [formAddTraLoi, setAddTraLoi] = useState();
 
-    console.log(id);
     useEffect(() => {
         getQuestion();
         getAnswerQuestion();
@@ -66,16 +69,49 @@ const DetailQuestion = () => {
         }
     };
 
+    const deleteQuestion = async (id) => {
+        console.log(user);
+        const headers = {
+            Authorization: `Bearer ${cookie.load('token')}`,
+        };
+        const temp =`/delete_tra_loi_by_id/${id}`
+        console.log(headers);
+        if (user.role != 1) {
+            alert('Bạn không phải admin, không có quyền xóa');
+        } else {
+            await get(`/delete_tra_loi_by_id/${id}/`, {
+                headers: headers,
+            }).then((res) => {
+                console.log(res);
+            });
+        }
+    };  
+
     const isAdmin = user && user.role === '2';
-    console.log(formAddTraLoi);
+
     return (
         <>
             <div className="main " style={{ width: '80%', margin: '0 auto' }}>
-                <div className="main_header d-flex flex-col" style={{ border: '2px solid #e8e8e8' }}>
-                    <div className="main_question_title">Chủ đề : {question.ten_chu_de}</div>
+                <div
+                    className="main_header d-flex flex-col justify-center"
+                    style={{ border: '2px solid #e8e8e8', padding: '15px' }}
+                >
+                    <div className="main_question_title mb-2" style={{ fontSize: '20px', marginBottom: '12px' }}>
+                        Chủ đề : {question.ten_chu_de}
+                    </div>
                     <div className="main_subInfo d-flex">
-                        <div className="question_author mr-2">{question.author}</div>
-                        <div className="question_time">20/2</div>
+                        <div className="question_author mr-2 d-flex items-align " style={{ opacity: 0.8 }}>
+                            <AccountCircleIcon style={{ marginRight: '5px' }} />
+                            <span style={{ marginRight: '5px' }}>Đăng bởi:</span>
+                            {question.author}
+                        </div>
+                        <div
+                            className="question_time d-flex items-align "
+                            style={{ opacity: 0.8, marginRight: '10px' }}
+                        >
+                            <AccessTimeIcon style={{ marginRight: '5px' }} />
+                            {question.thoi_gian}
+                        </div>
                     </div>
                 </div>
                 <div className="question_body mt-4">
@@ -91,8 +127,43 @@ const DetailQuestion = () => {
                             <div className="role">Member</div>
                         </div>
                         <div className="info_right h-60 w-11/12  ">
-                            <div className="time">{question.tieu_de}</div>
-                            <div className="content">{question.noi_dung}</div>
+                            <div
+                                className="reply_info d-flex  w-full  "
+                                style={{
+                                    border: '2px solid #e8e8e8',
+                                    boxShadow: 'rgb(225 225 225) 5px -3px 18px',
+                                }}
+                            >
+                                <div className="info_right h-60 " style={{ position: 'relative', width: '100%' }}>
+                                    <div
+                                        style={{
+                                            borderBottom: '1px solid',
+                                            paddingLeft: '10px',
+                                            paddingTop: '10px',
+                                            opacity: 0.5,
+                                            paddingBottom: '10px',
+                                        }}
+                                        className="time d-flex items-center"
+                                    >
+                                        Đã đăng : {question.thoi_gian}
+                                    </div>
+                                    <div className="container pl-4 pt-2">
+                                        <div
+                                            className="title"
+                                            style={{
+                                                width: '100%',
+                                                height: '100%',
+                                                background: '#dbdbdb',
+                                                padding: '10px 30px 14px 20px',
+                                                borderLeft: '4px solid #f38306',
+                                            }}
+                                        >
+                                            {question.noi_dung}
+                                        </div>
+                                        <div className="content" style={{ marginTop: '12px' }}></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -114,17 +185,48 @@ const DetailQuestion = () => {
                                             <div className="avatar d-flex ">
                                                 <Avatar className="d-flex">{isAdmin ? 'A' : 'U'}</Avatar>
                                             </div>
-                                            <div className="name">{ans.author_reply}</div>
+                                            <div className="name mt-2" style={{ fontWeight: '700' }}>
+                                                {ans.author_reply}
+                                            </div>
                                             <div className="role">{isAdmin ? 'admin' : 'user'}</div>
                                         </div>
-                                        <div className="info_right h-60 w-11/12 ">
-                                            <div className="time">{ans.thoi_gian}</div>
+                                        <div className="info_right h-60 w-11/12 " style={{ position: 'relative' }}>
+                                            <div
+                                                style={{
+                                                    borderBottom: '1px solid',
+                                                    paddingLeft: '10px',
+                                                    paddingTop: '10px',
+                                                    opacity: 0.5,
+                                                    paddingBottom: '10px',
+                                                }}
+                                                className="time d-flex items-center"
+                                            >
+                                                Đã trả lời : {ans.thoi_gian}
+                                            </div>
                                             <div className="container pl-4 pt-2">
-                                                <div className="title">
+                                                <div
+                                                    className="title"
+                                                    style={{
+                                                        width: '100%',
+                                                        height: '100%',
+                                                        background: '#dbdbdb',
+                                                        padding: '10px 30px 14px 20px',
+                                                        borderLeft: '4px solid #56aed4',
+                                                    }}
+                                                >
                                                     Trả lời câu hỏi : {question.tieu_de} của {question.author}
                                                 </div>
-                                                <div className="content">Trả lời :{ans.reply}</div>
+                                                <div className="content" style={{ marginTop: '12px' }}>
+                                                    {ans.reply}
+                                                </div>
                                             </div>
+                                            <button
+                                                style={{ position: 'absolute', right: '15px', bottom: '15px' }}
+                                                className="bg-red-500 text-white py-2 px-4 rounded-md"
+                                                onClick={() => deleteQuestion(ans.id)}
+                                            >
+                                                Xóa câu trả lời
+                                            </button>
                                         </div>
                                     </div>
                                 </>

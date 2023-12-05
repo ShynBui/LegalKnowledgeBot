@@ -28,11 +28,16 @@ The Legal Knowledge Bot is a powerful tool that provides a user-friendly interfa
 
 ## Usage
 
-1. **Run the Development Server:** Start the development server to run and test the application locally
+1. Create new file ```.env ``` and config 
+```
+VITE_PUBLIC_URL="/bophapdiendientu/demuc/"
+VITE_SERVER_URL="http://localhost:5050"
+```
+2. **Run the Development Server:** Start the development server to run and test the application locally
     ```
     npm run dev
     ```
-2. **Access the Application:** Open your web browser and navigate to `http://localhost:5173` to access the application interface.
+3. **Access the Application:** Open your web browser and navigate to `http://localhost:5173` to access the application interface.
 
 ## Next steps
 
