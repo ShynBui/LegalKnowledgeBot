@@ -5,9 +5,15 @@ from datetime import datetime
 from saleapp import app, jwt, dao
 
 from flask import jsonify, request
-
+from flask_jwt_extended import jwt_required, get_jwt_identity, verify_jwt_in_request
 from saleapp.models import User
 
+
+@jwt.user_lookup_loader
+def user_lookup_callback(_jwt_header, jwt_data):
+    identity = jwt_data["sub"]
+    print(identity)
+    return dao.get_user_by_id(identity)
 
 def cauhoi_serializer(cauhoi):
     formatted_time = cauhoi.thoi_gian.strftime('%d-%m-%Y')
@@ -49,3 +55,24 @@ def api_get_cau_hoi_by_id(id):
     cau_hoi = dao.get_cau_hoi_by_id(id)
     print(cau_hoi)
     return jsonify(cauhoi_serializer(cau_hoi))
+
+@jwt_required()
+@cross_origin()
+def api_delete_tra_loi_by_id(id):
+    print("da vao ")
+    print(current_user.role.value)
+    if current_user.role.value != 1:
+        return jsonify({"msg": "ban ko co quyen xoa"})
+    else:
+        check = dao.delete_cau_tra_loi_by_id(id)
+        if check:
+            return jsonify({"msg": "xoa thanh cong"}), 200
+        else:
+            return jsonify({"msg": "Xoa that bai"}), 401
+    # return jsonify(
+    #     id=current_user.id,
+    #     name=current_user.name,
+    #     username=current_user.username,
+    #     role = current_user.role.value
+        
+    # )

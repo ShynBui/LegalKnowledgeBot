@@ -2,7 +2,7 @@ from flask import render_template, request, redirect, session, jsonify, url_for
 from flask_login import login_user, current_user, logout_user, login_required
 from saleapp import HOST, app, login
 from saleapp import dao
-from saleapp.routes.api import api
+from saleapp.routes.api import *
 import cloudinary.uploader
 
 @app.route("/")

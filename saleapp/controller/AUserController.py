@@ -53,11 +53,12 @@ def api_user_login():
 @jwt_required()
 @cross_origin()
 def api_current_user():
-    # We can now access our sqlalchemy User object via `current_user`.
+
     return jsonify(
         id=current_user.id,
         name=current_user.name,
         username=current_user.username,
+        role=current_user.role.value
     )
 
 

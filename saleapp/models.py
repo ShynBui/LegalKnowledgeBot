@@ -119,6 +119,22 @@ class Reply(BaseModel):
     cau_hoi = relationship('models.CauHoi', backref='Reply', lazy=True)
 
 
+class ChatRoom(BaseModel):
+    __tablename__ = 'chat_room'
+    __table_args__ = {'extend_existing': True}
+    user_id = Column(Integer, ForeignKey(User.id), nullable=False)
+    name = Column(String(100), nullable=True)
+    messages = relationship('Message', backref=backref('chat_room', lazy=True, uselist=False), uselist=True, lazy=True)
+ 
+ 
+ 
+class Message(BaseModel):
+    __tablename__ = 'message'
+    __table_args__ = {'extend_existing': True}
+    chat_room_id = Column(Integer, ForeignKey(ChatRoom.id), nullable=False)
+    content = Column(String(100), nullable=True)
+    is_user_message = Column(Boolean, nullable=False)
+
 
 if __name__ == '__main__':
     with app.app_context():
