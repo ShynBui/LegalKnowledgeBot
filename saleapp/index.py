@@ -68,4 +68,4 @@ def search():
 
 if __name__ == "__main__":
     from saleapp.admin import *
-    app.run(debug=True, host=HOST, port=5051)
+    app.run(debug=True, host=HOST, port=5050)
