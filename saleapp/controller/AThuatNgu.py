@@ -141,7 +141,8 @@ def find_sentence_with_word(sentences, words):
 
 
 def get_thuat_ngu_in_html(id):
-    file_path = f"./data/bophapdiendientu/demuc/{id}.html"  # Đặt tên file HTML dựa trên id
+    file_path = f"saleapp/data/bophapdiendientu/demuc/{id}.html"
+    print(file_path)
     loader = UnstructuredHTMLLoader(file_path)
     data = loader.load()
     html = data[0].page_content
@@ -154,7 +155,7 @@ def get_thuat_ngu_in_html(id):
     result = map(lambda x: x.replace("_", " ").lower(), nouns)
     result = list(set(result))
 
-    data_thuat_ngu = pd.read_csv('./data/full_thuat_ngu_procesing_v3.csv')
+    data_thuat_ngu = pd.read_csv('saleapp/data/full_thuat_ngu_procesing_v3.csv')
     data_thuat_ngu['thuatngu_lower'] = data_thuat_ngu['thuatngu'].map(lambda x: x.lower().strip())
     words = data_thuat_ngu['thuatngu_lower'].map(lambda x: is_in(x, result))
     result_x = [x for x in words if x != -1]
