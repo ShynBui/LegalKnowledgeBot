@@ -11,6 +11,7 @@ const ThuatNgu = lazy(() => import('@p/ThuatNgu'));
 const PhapDienV2 = lazy(() => import('@p/PhapDienV2'));
 const DienDan = lazy(() => import('@p/DienDan'));
 const DetailQuestion = lazy(() => import('@p/DetailQuestion'));
+const TimKiemThuatNgu = lazy(() => import('@p/TimKiemThuatNgu'));
 
 const routes = [
     {
@@ -41,6 +42,10 @@ const routes = [
     {
         path: '/cauhoi/:id',
         page: DetailQuestion,
+    },
+    {
+        path: '/timkiemthuatngu',
+        page: TimKiemThuatNgu,
     },
     {
         path: '*',

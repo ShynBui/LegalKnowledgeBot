@@ -1,8 +1,7 @@
 import axios from 'axios';
-import cookie from 'react-cookies';
 
 export const request = axios.create({
-    baseURL: 'http://localhost:5051/api',
+    baseURL: import.meta.env.VITE_SERVER_URL + "/api",
 });
 
 export const HEADER = {

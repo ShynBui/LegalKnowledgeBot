@@ -54,7 +54,7 @@ const DetailQuestion = () => {
                 };
 
                 setAddTraLoi(updatedForm);
-                await post('/add_tra_loi', updatedForm).then((res) => {
+                await post('/add_tra_loi/', updatedForm).then((res) => {
                     setAddTraLoi({
                         noi_dung: '',
                     });

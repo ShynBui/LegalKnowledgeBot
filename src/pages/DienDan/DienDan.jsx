@@ -1,10 +1,10 @@
 import { useReducer, useEffect, useState } from 'react';
 import APIs, { endpoints } from '../../configs/APIs';
-import { FaCaretDown } from 'react-icons/fa6';
 import { get, post } from '~/utils/request';
 import MyUserReducer from '@c/MyUserReducer';
 import cookie from 'react-cookies';
 import { Link, useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 const DienDan = () => {
     const [topics, setTopics] = useState([]);
@@ -56,7 +56,7 @@ const DienDan = () => {
 
     const addQuestion = async () => {
         try {
-            const res = await get('/add_cau_hoi', formAddQuestion);
+            const res = await get('/add_cau_hoi/', formAddQuestion);
             console.log(res);
         } catch (ex) {
             console.error(ex);
@@ -73,7 +73,7 @@ const DienDan = () => {
                 };
 
                 setFormAddQuestion(updatedForm);
-                await post('/add_cau_hoi', updatedForm).then((res) => {
+                await post('/add_cau_hoi/', updatedForm).then((res) => {
                     setFormAddQuestion({
                         tieu_de: '',
                         noi_dung: '',

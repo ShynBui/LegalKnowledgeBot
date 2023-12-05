@@ -53,7 +53,7 @@ const PhapDienV2 = () => {
             setListThuatNgu(res);
         });
     }, [file]);
-
+    console.log(listThuatNgu);
     useEffect(() => {
         if (selectedTopic.length > 0) {
             getSubTopic(selectedTopic);
@@ -152,90 +152,113 @@ const PhapDienV2 = () => {
         setSelectedSubTopic(event.target.value);
     };
     return (
-        <div>
-            <h1
-                className="title"
-                style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    fontSize: '30px',
-                    fontWeight: '900',
-                    marginBottom: '35px',
-                }}
-            >
-                Bộ pháp điển điện tử
-            </h1>
-            <div className="search-grid">
-                <div className="relative">
-                    <select onChange={changeTopic} className="select-title">
-                        <option value="">-- Xem theo chủ đề --</option>
-                        <>
-                            {topics &&
-                                topics.map((topic, index) => {
-                                    return (
-                                        <option key={index} value={topic.id}>
-                                            {topic.ten_chu_de}
-                                        </option>
-                                    );
-                                })}
-                        </>
-                    </select>
-                    {/* <FaCaretDown className="arrow" /> */}
+        <>
+            <div className="wrapper d-flex">
+                <div style={{ width: '80%', margin: '' }}>
+                    <h1
+                        className="title"
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            fontSize: '30px',
+                            fontWeight: '900',
+                            marginBottom: '35px',
+                        }}
+                    >
+                        Bộ pháp điển điện tử
+                    </h1>
+                    <div className="search-grid">
+                        <div className="relative">
+                            <select onChange={changeTopic} className="select-title">
+                                <option value="">-- Xem theo chủ đề --</option>
+                                <>
+                                    {topics &&
+                                        topics.map((topic, index) => {
+                                            return (
+                                                <option key={index} value={topic.id}>
+                                                    {topic.ten_chu_de}
+                                                </option>
+                                            );
+                                        })}
+                                </>
+                            </select>
+                            {/* <FaCaretDown className="arrow" /> */}
+                        </div>
+                        <div className="relative">
+                            <select onChange={changeSubTopic} className="select-title">
+                                <option>-- Xem theo Đề mục --</option>
+                                {subTopics.map((subTopic, index) => (
+                                    <option key={index} value={subTopic.id}>
+                                        {subTopic.ten_de_muc}
+                                    </option>
+                                ))}
+                            </select>
+                            {/* <FaCaretDown className="arrow" /> */}
+                        </div>
+                        <div>
+                            <input className="search-input" type="text" placeholder="Nhập từ khóa để tìm kiếm" />
+                        </div>
+                    </div>
+                    <Modal
+                        open={isModalOpen}
+                        onClose={closeModal}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <Box sx={style}>
+                            <Typography id="modal-modal-title" variant="h6" component="h2">
+                                {modalContent}
+                            </Typography>
+                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                Dinh nghia
+                            </Typography>
+                        </Box>
+                    </Modal>
+                    <FileContext.Provider value={{ file, setFile, topics, subTopics }}>
+                        <div className="p-2 lg:p-10 grid grid-cols-10">
+                            <div className="col-span-10 lg:col-span-3 border-r-0 border-b-2 lg:border-r-2 lg:border-b-0 border-dark p-2">
+                                <div className="boPhapDien">
+                                    <TreeView data={filterTopic ? filterTopic : topics}></TreeView>
+                                </div>
+                            </div>
+
+                            <div className="col-span-10 lg:col-span-7 px-5">
+                                {html && (
+                                    <div
+                                        onClick={handleMouseOver}
+                                        className="px-10 py-5 bg-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.1)] h-[120rem] overflow-y-auto"
+                                        dangerouslySetInnerHTML={{ __html: html }}
+                                    />
+                                )}
+                            </div>
+                        </div>
+                    </FileContext.Provider>
                 </div>
-                <div className="relative">
-                    <select onChange={changeSubTopic} className="select-title">
-                        <option>-- Xem theo Đề mục --</option>
-                        {subTopics.map((subTopic, index) => (
-                            <option key={index} value={subTopic.id}>
-                                {subTopic.ten_de_muc}
-                            </option>
+                <div style={{ width: '20%' }}>
+                    <h1
+                        style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            fontSize: '28px',
+                            fontWeight: '900',
+                            marginBottom: '37px',
+                        }}
+                    >
+                        Danh sách thuật ngữ
+                    </h1>
+                    <div
+                        className="list_thuat_ngu"
+                        style={{ height: '1000px', overflow: 'scroll', border: '1px solid', padding: '10px' }}
+                    >
+                        {Object.entries(listThuatNgu).map(([term, meaning], index) => (
+                            <li key={index}>
+                                <strong>{term}:</strong> {meaning}
+                            </li>
                         ))}
-                    </select>
-                    {/* <FaCaretDown className="arrow" /> */}
-                </div>
-                <div>
-                    <input className="search-input" type="text" placeholder="Nhập từ khóa để tìm kiếm" />
+                    </div>
                 </div>
             </div>
-            <Modal
-                open={isModalOpen}
-                onClose={closeModal}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
-                <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
-                        {modalContent}
-                    </Typography>
-                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                        Dinh nghia
-                    </Typography>
-                </Box>
-            </Modal>
-            <FileContext.Provider value={{ file, setFile, topics, subTopics }}>
-                <div className="p-2 lg:p-10 grid grid-cols-10">
-                    <div className="col-span-10 lg:col-span-3 border-r-0 border-b-2 lg:border-r-2 lg:border-b-0 border-dark p-2">
-                        <div className="boPhapDien">
-                            <h1>Bộ pháp điển</h1>
-                            <TreeView data={filterTopic ? filterTopic : topics}></TreeView>
-                        </div>
-                        <div className="thuatNgu">
-                            <h2>Danh sách thuật ngữ</h2>
-                        </div>
-                    </div>
-
-                    <div className="col-span-10 lg:col-span-7 px-5">
-                        {html && (
-                            <div
-                                onClick={handleMouseOver}
-                                className="px-10 py-5 bg-white shadow-3xl h-[120rem] overflow-y-auto"
-                                dangerouslySetInnerHTML={{ __html: html }}
-                            />
-                        )}
-                    </div>
-                </div>
-            </FileContext.Provider>
-        </div>
+        </>
     );
 };
 

@@ -12,9 +12,12 @@
 .search-input {
     @apply border border-gray-700 text-gray-900 focus:border-gray-900 block w-full p-[1rem];
 
-    background-color: wheat;
+    background-color: #ffff;
+    color:#56aed4;
+    
 }
 
 .search-grid {
     @apply grid lg:grid-cols-3 items-center gap-5 mx-2 md:mx-10;
+    margin-bottom: 20px;
 }

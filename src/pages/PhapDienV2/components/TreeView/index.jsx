@@ -5,7 +5,7 @@ const TreeView = ({ data }) => {
 
     return (
         <>
-            <div className="div"  style={{ height: '500px', overflow: 'scroll' }}>
+            <div className="div"  style={{ height: '1000px', overflow: 'scroll' }}>
                 {data.map((node, index) => {
                     return <TreeNode key={index} data={node} level={0}></TreeNode>;
                 })}

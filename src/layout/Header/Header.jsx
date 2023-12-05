@@ -8,12 +8,15 @@ import Button from '@mui/material/Button';
 
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
-import AuthModal from './AuthModal';
+
 import { get, post } from '~/utils/request';
 import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
+import CancelIcon from '@mui/icons-material/Cancel';
+import logo from '../../assets/logo.png';
+
 let cx = classNames.bind(styles);
 
 const ModalWrapper = ({ show, children }) => {
@@ -50,7 +53,7 @@ const Header = () => {
 
         const process = async () => {
             try {
-                let res = await post('/login', infoUserLogin);
+                let res = await post('/login/', infoUserLogin);
 
                 console.log(res);
                 cookie.save('token', res);
@@ -59,7 +62,7 @@ const Header = () => {
                     Authorization: `Bearer ${cookie.load('token')}`,
                 };
 
-                const data = await get('/current-user', {
+                const data = await get('/current-user/', {
                     headers: headers,
                 });
                 console.log(data);
@@ -80,27 +83,52 @@ const Header = () => {
 
         process();
     };
-    const handleSubmit = () => {};
-    const handleLogin = () => {};
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (userPassword === confirmPassword) {
+            const formData = {
+                username: userName,
+                password: userPassword,
+                confirmPassword: confirmPassword,
+                email: userEmail,
+                name: userName,
+            };
+            setShowLoading(true);
+            setErrorMessage(false);
 
-    const handleLogout = () => {};
+            post('/register-user/', formData)
+                .then((data) => {
+                    alert('Đăng ký thành công');
+                    setShowModal(false);
+                    setShowRegister(false);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        } else setErrorMessage(true);
+    };
+
+    const handleLogin = () => { };
+
+    const handleLogout = () => {
+        window.location.href = '/';
+        dispatch({
+            type: 'logout',
+        });
+    };
 
     console.log(infoUserLogin);
     return (
         <>
             <ModalWrapper show={showModal}>
                 <div className={cx('modal-inner')}>
-                    <h2>Đăng nhập bằng </h2>
+                    <h2 style={{ color: '', fontWeight: '700', fontSize: '18px' }}>ĐĂNG NHẬP</h2>
                     {loginFailed && <h2 style={{ fontSize: '16px', color: 'red' }}>Tài khoản hoặc mật khẩu sai !</h2>}
                     <span className={cx('cancel', 'material-icons')} onClick={handleCancel}>
-                        cancel
+                        <CancelIcon></CancelIcon>
                     </span>
-                    <div className="d-flex g-2 justify-content-center">
-                        <div id="signInGoogle">
-                            <></>
-                        </div>
-                    </div>
-                    <p className="mt-3">hoặc</p>
+
+                    <p className="mt-3"></p>
 
                     <form>
                         <div className="mb-3 text-start">
@@ -135,7 +163,12 @@ const Header = () => {
                             </div>
                             <Link to="/">Quên mật khẩu</Link>
                         </div>
-                        <Button onClick={handleSubmitLogin} className="w-100 mt-3">
+                        <Button
+                            variant="contained"
+                            color="info"
+                            onClick={handleSubmitLogin}
+                            className="w-100 mt-3 me-2 "
+                        >
                             ĐĂNG NHẬP
                         </Button>
                     </form>
@@ -153,14 +186,14 @@ const Header = () => {
 
             <ModalWrapper show={showRegister}>
                 <div className={cx('modal-inner')} style={{ height: '550px' }}>
-                    <h2>Đăng ký</h2>
+                    <h2 style={{ color: '', fontWeight: '700', fontSize: '18px' }}>Đăng ký</h2>
                     {errorMessage && (
                         <h2 style={{ fontSize: '18px', color: 'red', fontWeight: '600' }}>
                             Xác nhận mật khẩu không đúng !!
                         </h2>
                     )}
                     <span className={cx('cancel', 'material-icons')} onClick={handleCancel}>
-                        cancel
+                        <CancelIcon></CancelIcon>l
                     </span>
                     {ErrorUserNameEmail && (
                         <h2 style={{ fontSize: '18px', color: 'red', fontWeight: '600' }}>
@@ -221,7 +254,7 @@ const Header = () => {
                         <div className="d-flex justify-content-between mt-3">
                             <div>
                                 <label htmlFor="acp-policy" style={{ marginRight: '10px' }}>
-                                    Bạn đã đọc và đồng ý <Link to="/">điều khoản</Link> của Ba Tô Phở{' '}
+                                    Bạn đã đọc và đồng ý <Link to="/">điều khoản</Link> của CodeHeroes{' '}
                                 </label>
                                 <input
                                     onChange={() => setCheckbutton(!checkButton)}
@@ -232,7 +265,13 @@ const Header = () => {
                             </div>
                         </div>
 
-                        <Button type="submit" className="w-100 mt-3" disabled={!isFormValid} onClick={handleSubmit}>
+                        <Button
+                            variant="contained"
+                            color="info"
+                            type="submit"
+                            className="w-100 mt-3 me-2"
+                            onClick={handleSubmit}
+                        >
                             {' '}
                             <h1 className={cx('register')}>
                                 ĐĂNG KÝ{' '}
@@ -251,12 +290,7 @@ const Header = () => {
             <header className={cx('wrapper')}>
                 <div className={cx('logo')}>
                     <Link to="/">
-                        <img
-                            src="/src/assets/logo.png"
-                            alt="Logo"
-                            className="w-150 h-100"
-                            style={{ borderRadius: '50%' }}
-                        />
+                        <img src={`${logo}`} alt="Logo" className="w-150 h-100" style={{ borderRadius: '50%' }} />
                     </Link>
                     <h1 style={{ fontSize: '20px' }}>CodeHeroes</h1>
                 </div>
@@ -269,8 +303,8 @@ const Header = () => {
                                 <Button className="me-5 btn btn-warning border">Diễn đàn</Button>
                             </Link>
 
-                            <Link to="/chat">
-                                <Button className="me-5 btn btn-primary border">Chat ngay</Button>
+                            <Link to="/">
+                                <Button className="me-5 btn btn-primary border">Liên hệ</Button>
                             </Link>
 
                             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
