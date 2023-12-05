@@ -4,6 +4,15 @@
 
 The Legal Knowledge Bot is a powerful tool that provides a user-friendly interface that makes it easy for users to search for and ask questions about the law.
 
+## Project Functions
+1. Allow users to ask and answer questions about the legal field
+2. Allow users to look up legal terms
+3. Allow users use it to look at the dharma dictionary and filter out the terms contained in the dharma dictionary
+4. Allow users filter terms from paragraphs
+5. Provide a forum for users to ask and answer questions about the law
+   
+The Legal Knowledge Bot is a powerful tool that provides a user-friendly interface that makes it easy for users to search for and ask questions about the law.
+
 ## Technologies
 
 -   React: JavaScript library for building user interfaces
