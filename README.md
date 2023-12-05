@@ -4,6 +4,8 @@ LegalKnowledgeBot is a comprehensive application designed to assist users in loo
 
 **Note:** Explore the website interface by following this [link](https://hethongphapluatcodeheroes.netlify.app/).
 
+# Technology used
+The system uses two open source technologies for programming: ```ReactJs``` and ```Python Flask```. In addition, the system also uses accompanying integration tools such as ```CI/CD```, ```Docker```.
 # Deployment
 We have deployed the project to the following two domains:
 - [Front-end](https://hethongphapluatcodeheroes.netlify.app/)
