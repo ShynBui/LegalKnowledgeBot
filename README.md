@@ -9,6 +9,11 @@ You can access the backend website that my team has deployed at the following li
 ```
 https://phapluatcodeheroes.site
 ```
+## Project Function
+
+1. This is the server that provides our RESTful API. 
+2. The system uses techniques to optimize and secure the system such as authentication, authorization, and RESTful API, CI/CD.
+
 
 ## Usage
 
