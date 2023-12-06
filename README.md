@@ -69,7 +69,7 @@ VITE_SERVER_URL="http://localhost:5050"
 
 ## License
 
-[Apache License 2.0](http://www.apache.org/licenses/)
+This project is licensed under the terms of the [Apache License 2.0](http://www.apache.org/licenses/) license.
 
 ## Acknowledgments
 
