@@ -13,6 +13,8 @@ from saleapp.controller.AChatBoxController import *
 
 from saleapp.controller.ASearchGG import *
 from saleapp.controller.ABaoCaoNguoiDung import *
+from saleapp.controller.AChat import *
+
 
 
 
@@ -51,3 +53,6 @@ api.route('/delete_tra_loi_by_id/<id>/', methods=["GET"])(api_delete_tra_loi_by_
 
 # ghi nhan bao cao
 api.route('/bao_cao_nguoi_dung/', methods=["POST"])(api_ghi_nhan_bao_cao)
+
+api.route('/chat/', methods=['GET'])(get_tin_nhan_api)
+api.route('/chat/', methods=['POST'])(add_tin_nhan_api)

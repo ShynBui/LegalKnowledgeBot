@@ -183,3 +183,18 @@ def ghi_nhan_bao_cao(noi_dung_van_ban, noi_dung_bao_cao, thuat_ngu, id_user):
         return True
     else:
         return False
+    
+    
+def add_tin_nhan(noi_dung, user_id, nguon=None):
+    tin_nhan_moi = Message(noi_dung=noi_dung, user_id=user_id, nguon=nguon)
+    db.session.add(tin_nhan_moi)
+    db.session.commit()
+    return tin_nhan_moi
+
+
+def get_tin_nhan_by_user_id(user_id):
+    return Message.query.filter(Message.user_id.__eq__(user_id)).order_by(Message.thoi_gian_tao).all()
+
+def get_source_by_de_muc_id(de_muc_id):
+    source = db.session.query(ChuongVaDieuPhapDien).filter_by(de_muc_id=de_muc_id).first()
+    return source.ten

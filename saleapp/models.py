@@ -119,21 +119,19 @@ class Reply(BaseModel):
     cau_hoi = relationship('models.CauHoi', backref='Reply', lazy=True)
 
 
-class ChatRoom(BaseModel):
-    __tablename__ = 'chat_room'
-    __table_args__ = {'extend_existing': True}
-    user_id = Column(Integer, ForeignKey(User.id), nullable=False)
-    name = Column(String(100), nullable=True)
-    messages = relationship('Message', backref=backref('chat_room', lazy=True, uselist=False), uselist=True, lazy=True)
  
  
  
 class Message(BaseModel):
-    __tablename__ = 'message'
+    __tablename__ = 'tin_nhan'
     __table_args__ = {'extend_existing': True}
-    chat_room_id = Column(Integer, ForeignKey(ChatRoom.id), nullable=False)
-    content = Column(String(100), nullable=True)
-    is_user_message = Column(Boolean, nullable=False)
+    
+    noi_dung = Column(Text, nullable=False)
+    thoi_gian_tao = Column(DateTime, nullable=False, default=datetime.now())
+    user_id = Column(Integer, ForeignKey('user.id'), nullable=True)
+    user = relationship('models.User', backref='message', lazy=False)
+    nguon = Column(Text, nullable=True)
+
 
 class BaoCaoNguoiDung(BaseModel):
     __tablename__ = 'bao_cao_nguoi_dung'
