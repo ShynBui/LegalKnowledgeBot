@@ -1,3 +1,5 @@
+![Local Image](./assets/banner.png)
+
 # LegalKnowledgeBot Frontend
 
 ## Introduction
