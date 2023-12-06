@@ -104,10 +104,10 @@ def add_tin_nhan_api():
         context = ViTokenizer.tokenize(i.page_content)
         question = ViTokenizer.tokenize(noi_dung)
         output = query({
-        "inputs": {
-            "question": question,
-            "context": context
-        },
+            "inputs": {
+                "question": question,
+                "context": context
+            },
         })
         
         while "error" in output:
