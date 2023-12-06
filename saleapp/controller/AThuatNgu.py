@@ -54,7 +54,9 @@ headers = {"Authorization": "Bearer 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"}
 
 def api_tim_thuat_ngu():
     paragraph = request.json.get("paragraph")
+    # print(paragraph)
     if paragraph is not None:
+        print(paragraph)
         nouns = get_nouns(paragraph)
         result = map(lambda x: x.replace("_", " ").lower(), nouns)
         result = list(set(result))

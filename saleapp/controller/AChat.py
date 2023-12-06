@@ -19,7 +19,10 @@ from langchain.vectorstores import Chroma
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.retrievers import BM25Retriever, EnsembleRetriever
 embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
-
+from langchain.chat_models import ChatOpenAI
+from langchain.prompts import ChatPromptTemplate
+from langchain.schema import StrOutputParser
+from langchain.schema.runnable import RunnablePassthrough
 
 API_URL = "https://api-inference.huggingface.co/models/ShynBui/vie_qa"
 headers = {"Authorization": "Bearer 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"}
@@ -79,7 +82,7 @@ def add_tin_nhan_api():
         texts = split_with_source(new_doc, sources)
         documents = documents +texts
      
-    print(documents)
+    # print(documents)
     if noi_dung and not noi_dung.endswith('?'):
         noi_dung += '?'
     
@@ -96,6 +99,28 @@ def add_tin_nhan_api():
     
     docs = ensemble_retriever.get_relevant_documents(noi_dung)
     
+    template = """
+    Bạn là trợ lý được giao nhiệm vụ cải thiện tìm kiếm của Google
+    kết quả. Tạo NĂM truy vấn tìm kiếm trên Google tương tự với câu hỏi này. Đầu ra phải là một danh sách các câu hỏi được xếp theo thứ tự liên quan đến câu hỏi gốc nhất và mỗi câu hỏi phải có một dấu chấm hỏi ở cuối: {question}"""
+
+    prompt = ChatPromptTemplate.from_template(template)
+    model = ChatOpenAI(openai_api_key="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")
+
+
+    def format_docs(docs):
+        return docs
+
+
+    chain = (
+        {"format_docs": format_docs, "question": RunnablePassthrough()}
+        | prompt
+        | model
+        | StrOutputParser()
+    )
+    
+    new_nd = chain.invoke(noi_dung).split('\n')[0]
+    print(new_nd)
+    docs = docs + ensemble_retriever.get_relevant_documents(new_nd)
 
     result = []
     step=0
