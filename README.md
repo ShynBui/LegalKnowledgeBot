@@ -1,4 +1,4 @@
-![Local Image]([ShynBui/LegalKnowledgeBot/raw/frontend/src/assets/banner.png](https://github.com/ShynBui/LegalKnowledgeBot/raw/frontend/src/assets/banner.png))
+![Local Image](https://github.com/ShynBui/LegalKnowledgeBot/raw/frontend/src/assets/banner.png)
 
 # LegalKnowledgeBot
 
