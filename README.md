@@ -76,6 +76,10 @@ We maintain three branches in our GitHub repository:
 Feel free to explore each branch for more information and contribute to the development of LegalKnowledgeBot!
 
 # Authors
-1. Bui Tien Phat
-2. Nguyen Duc Hoang
-3. Tsan Quy Thanh
+-   [Nguyen Duc Hoang](https://github.com/duchoaang)
+-   [Bui Tien Phat](https://github.com/ShynBui)
+-   [Tsan Quy Thanh](https://github.com/quythanh)
+
+# License
+
+This project is licensed under the terms of the [Apache License 2.0](http://www.apache.org/licenses/) license.
