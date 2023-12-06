@@ -32,8 +32,10 @@ api.route('/chuong_va_dieu_phap_dien/<chuong_id>/chi_muc/', methods=["GET"])(api
 api.route('/thuat_ngu/', methods=["GET"])(api_thuat_ngu)
 api.route('/thuat_ngu/doan_van/', methods=["POST"])(api_tim_thuat_ngu)
 api.route('/thuat_ngu/<id>/', methods=["POST"])(get_thuat_ngu_in_html)
-api.route('/terminologies/search-paragraph/', methods=['POST'])(search_terminology_form_paragraph)
+api.route('/terminologies/search-paragraph/', methods=['POST'])(api_search_maybe_term)
 api.route('/terminologies/', methods=['GET'])(get_terminology)
+api.route('/search_thuat_ngu/', methods=['POST'])(api_search_maybe_term)
+
 
 # cau hoi
 api.route('/cau_hoi/<chu_de_id>/', methods=["GET"])(api_get_cau_hoi_theo_chu_de)
