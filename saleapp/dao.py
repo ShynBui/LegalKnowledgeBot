@@ -174,3 +174,12 @@ def delete_cau_tra_loi_by_id(id):
         return True  
     else:
         return False 
+    
+def ghi_nhan_bao_cao(noi_dung_van_ban, noi_dung_bao_cao, thuat_ngu, id_user):
+    baocao = BaoCaoNguoiDung(noi_dung_bao_cao = noi_dung_bao_cao, noi_dung_van_ban = noi_dung_van_ban, thuat_ngu = thuat_ngu, id_user = id_user)
+    db.session.add(baocao)
+    db.session.commit()
+    if baocao:
+        return True
+    else:
+        return False

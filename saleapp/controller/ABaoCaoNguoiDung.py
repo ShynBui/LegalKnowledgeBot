@@ -19,6 +19,12 @@ from saleapp.models import User
 
 def api_ghi_nhan_bao_cao():
    noi_dung_van_ban = request.json.get('noi_dung_van_ban')
-   id_thuat_ngu = request.json.get('id_thuat_ngu')
+   noi_dung_bao_cao = request.json.get('noi_dung_bao_cao')
+   thuat_ngu = request.json.get('thuat_ngu')
    id_user = request.json.get('id_user')
+   check = dao.ghi_nhan_bao_cao(noi_dung_van_ban=noi_dung_van_ban, noi_dung_bao_cao= noi_dung_bao_cao, thuat_ngu=thuat_ngu, id_user=id_user)
+   if check:
+       return jsonify({"msg": "Ghi nhận báo cáo thành công"}), 200
+   else:
+       return jsonify({"msg": "Ghi nhận báo cáo thất bại"}), 400
 

@@ -140,12 +140,11 @@ class BaoCaoNguoiDung(BaseModel):
     __table_args__ = {'extend_existing': True}
     noi_dung_van_ban = Column(Text)
     noi_dung_bao_cao = Column(Text)
-    id_thuat_ngu = Column(Integer, ForeignKey(ThuatNgu.id))
+    thuat_ngu = Column(Text)
     id_user = Column(Integer, ForeignKey(User.id))
     thoi_gian = Column(DateTime, nullable=False, default=datetime.now())
     user = relationship('models.User', backref='BaoCaoNguoiDung', lazy=True)
-    thuat_ngu = relationship('models.ThuatNgu', backref='BaoCaoNguoiDung', lazy=True)
-    
+   
 
 
 

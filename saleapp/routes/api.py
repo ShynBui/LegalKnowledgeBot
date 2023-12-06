@@ -12,6 +12,8 @@ from saleapp.controller.ATimKiemThuatNgu import *
 from saleapp.controller.AChatBoxController import *
 
 from saleapp.controller.ASearchGG import *
+from saleapp.controller.ABaoCaoNguoiDung import *
+
 
 
 api = Blueprint('api', __name__)
@@ -46,3 +48,6 @@ api.route('/delete_tra_loi_by_id/<id>/', methods=["GET"])(api_delete_tra_loi_by_
 
 # chat bot
 # api.route('/chat_bot/', methods=["POST"])(send_msg)
+
+# ghi nhan bao cao
+api.route('/bao_cao_nguoi_dung/', methods=["POST"])(api_ghi_nhan_bao_cao)
