@@ -1,3 +1,5 @@
+![Local Image](ShynBui/LegalKnowledgeBot/raw/frontend/src/assets/banner.png)
+
 # LegalKnowledgeBot
 
 LegalKnowledgeBot is a comprehensive application designed to assist users in looking up and asking questions related to legal knowledge. Leveraging the Legal Code and Legal Document Database, the application aims to provide accurate and reliable information and answers. LegalKnowledgeBot facilitates users in swiftly finding legal information, gaining a better understanding of legal regulations and norms, and obtaining answers to questions in the legal field.
