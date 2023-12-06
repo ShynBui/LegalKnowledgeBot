@@ -1,10 +1,11 @@
 import { useEffect, useState, useRef } from 'react';
+import React from 'react';
 import { Box, TextField, Button, Typography, Avatar, Grid, Paper } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { post } from '~/utils/request';
 import cookie from 'react-cookies';
 
-const Chat = () => {
+const ChatGG = () => {
     const [input, setInput] = useState('');
 
     const [messages, setMessages] = useState([
@@ -16,41 +17,36 @@ const Chat = () => {
         if (input.trim() !== '') {
             setMessages([...messages, { id: messages.length + 1, text: input.trim(), sender: 'user' }]);
             setInput('');
-            const headers = {
-                Authorization: `Bearer ${cookie.load('token')}`,
-            };
             (async () => {
-                let response = await post(
-                    '/chat/',
-                    {
-                        noi_dung: input.trim(),
-                        de_muc_id: '1fd42d83-9d78-4dd4-b6b6-73e9bd3472e1',
-                    },
-                    {
-                        headers: headers,
-                    },
-                );
+                let response = await post('/search_gg/', {
+                    query: input.trim(),
+                });
                 console.log(response);
-
-                console.log(response.noi_dung.replace('_', ' '));
                 setMessages([
                     ...messages,
                     { id: messages.length + 1, text: input.trim(), sender: 'user' },
                     {
                         id: messages.length + 2,
                         sender: 'bot',
-                        text: response.noi_dung.replace(/_/g, ' '),
-                        refs: [response.nguon],
+                        text: response.map((r, i) => (
+                            <React.Fragment key={i}>
+                                <span key={i}>
+                                    {r.answers.replace(/_/g, ' ')} [{i + 1}]
+                                </span>
+                                <br />
+                            </React.Fragment>
+                        )),
+                        refs: response.map((r, i) => (
+                            <React.Fragment key={i}>
+                                <a href={r.sources} target="_blank">
+                                    {i + 1}. {r.sources}
+                                </a>
+                                <br />
+                            </React.Fragment>
+                        )),
                     },
                 ]);
             })();
-
-            // setTimeout(() => {
-            //     let response = {
-            //         text: 'ok',
-            //         refs: ['Chủ đề 2', 'Chủ đề 6 đề mục 4'],
-            //     };
-            // }, 100);
         }
     };
 
@@ -189,4 +185,4 @@ const Message = ({ message }) => {
     );
 };
 
-export default Chat;
+export default ChatGG;

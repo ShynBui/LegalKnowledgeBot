@@ -5,6 +5,7 @@ import Empty from '~/layout/Empty';
 const Home = lazy(() => import('@p/Home'));
 
 const Chat = lazy(() => import('@p/Chat'));
+const ChatGG = lazy(() => import('@p/ChatGG'));
 
 const QPPL = lazy(() => import('@p/QPPL'));
 const ThuatNgu = lazy(() => import('@p/ThuatNgu'));
@@ -22,6 +23,10 @@ const routes = [
     {
         path: '/chat',
         page: Chat,
+    },
+    {
+        path: '/chatgg',
+        page: ChatGG,
     },
     {
         path: '/qppl',

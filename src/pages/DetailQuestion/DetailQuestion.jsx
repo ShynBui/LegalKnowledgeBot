@@ -74,7 +74,7 @@ const DetailQuestion = () => {
         const headers = {
             Authorization: `Bearer ${cookie.load('token')}`,
         };
-        const temp =`/delete_tra_loi_by_id/${id}`
+        const temp = `/delete_tra_loi_by_id/${id}`;
         console.log(headers);
         if (user.role != 1) {
             alert('Bạn không phải admin, không có quyền xóa');
@@ -85,7 +85,7 @@ const DetailQuestion = () => {
                 console.log(res);
             });
         }
-    };  
+    };
 
     const isAdmin = user && user.role === '2';
 
