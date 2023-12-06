@@ -2,7 +2,7 @@
 
 # LegalKnowledgeBot
 
-LegalKnowledgeBot is a comprehensive application designed to assist users in looking up and asking questions related to legal knowledge. Leveraging the Legal Code and Legal Document Database, the application aims to provide accurate and reliable information and answers. LegalKnowledgeBot facilitates users in swiftly finding legal information, gaining a better understanding of legal regulations and norms, and obtaining answers to questions in the legal field.
+LegalKnowledgeBot is a comprehensive application designed to assist users in getting answers to their legal queries. Utilizing the Legal Code and Legal Document Database, it seeks to deliver accurate and reliable responses and provide legal information. Furthermore, users can locate legal material faster, comprehend legal rules and regulations, and get answers to law-related questions via the LegalKnowledgeBot.
 
 **Note:** Explore the website interface by following this [link](https://hethongphapluatcodeheroes.netlify.app/).
 
@@ -16,21 +16,21 @@ We have deployed the project to the following two domains:
 ## Main Functions
 
 1. **Search and View Legal Documents:**
-   - Allows users to search and view the contents of legal documents in effect.
+   - Allows users to search for and view the contents of legal documents in effect.
    - Organizes information by topics, headings, indexes, and articles similar to the Vietnamese Legal Dictionary.
-
-2. **Automated Term Extraction:**
+   
+2. **Extract Automatically Terms:**
    - Automatically extracts terms and words defined in legal documents.
 
-3. **Quick Search and Suggestions:**
+3. **Search and Make Suggestions Rapidly:**
    - Enables quick searches based on issue groups and main keywords.
    - Provides suggestions for related legal documents.
    - Supports arranging and searching tables and forms specified in legal documents.
 
-4. **Question and Answer Support:**
+4. **Support Questions with Answers:**
    - Answers users' questions about the law by extracting knowledge from currently effective legal documents.
      
-5. **Forum**
+5. **Create a Forum**
    - Q&A forum for users provides users with a forum for legal questions and interactions.
 
 
