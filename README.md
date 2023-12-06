@@ -1,4 +1,4 @@
-![Local Image](./assets/banner.png)
+![Local Image](src/assets/banner.png)
 
 # LegalKnowledgeBot Frontend
 
