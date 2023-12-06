@@ -1,6 +1,6 @@
 # LegalKnowledgeBot
 
-Develop an application to support searching and asking questions about legal knowledge based on the Legal Code and Legal Document Database#.
+Develop an application to support searching and asking questions about legal knowledge based on the Legal Code and Legal Document Database.
 
 # First of all
 
@@ -9,6 +9,11 @@ You can access the backend website that my team has deployed at the following li
 ```
 https://phapluatcodeheroes.site
 ```
+## Project Function
+
+1. This is the server that provides system RESTful API. 
+2. The system uses techniques to optimize and secure the system such as authentication, authorization, and RESTful API, CI/CD, Docker.
+
 
 ## Usage
 
@@ -30,7 +35,8 @@ git clone -b backend https://github.com/ShynBui/LegalKnowledgeBot.git backend
    HOST=localhost
    CORS_URL=http://localhost:5173
    JWT_SECRET_KEY=123312dsawq
-
+   TOKEN_HUGGING_FACE=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
+   API_URL=https://api-inference.huggingface.co/models/ShynBui/vie_qa
    ```
 
 ## Running the Program in VSCode
@@ -107,7 +113,7 @@ You will need the following:
 # Dependencies and libraries
 
 1. Flask and related extensions:
-   <<<<<<< HEAD
+
 
 - Flask (3.0.0)
 - Flask-Bcrypt (1.0.1)
@@ -182,4 +188,4 @@ You will need the following:
 - Tabulate (0.9.0)
 - Jenkins
 - Docker
-  > > > > > > > ab79c5e2dfb8acac58682fa2aff039a5776086c7
+

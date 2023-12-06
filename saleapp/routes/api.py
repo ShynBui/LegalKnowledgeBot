@@ -9,7 +9,9 @@ from saleapp.controller.AThuatNgu import *
 from saleapp.controller.ACauHoi import *
 from saleapp.controller.ATraLoi import *
 from saleapp.controller.ATimKiemThuatNgu import *
-# from saleapp.controller.ASearchGG import *
+from saleapp.controller.AChatBoxController import *
+
+from saleapp.controller.ASearchGG import *
 
 
 api = Blueprint('api', __name__)
@@ -32,12 +34,15 @@ api.route('/terminologies/', methods=['GET'])(get_terminology)
 # cau hoi
 api.route('/cau_hoi/<chu_de_id>/', methods=["GET"])(api_get_cau_hoi_theo_chu_de)
 api.route('/add_cau_hoi/', methods=["POST"])(api_add_cau_hoi)
-api.route('/cau_hoi_by_id/<id>', methods=["GET"])(api_get_cau_hoi_by_id)
+api.route('/cau_hoi_by_id/<id>/', methods=["GET"])(api_get_cau_hoi_by_id)
 
 
 # cau tra loi
-api.route('/tra_loi/<cau_hoi_id>', methods=["GET"])(api_get_tra_loi_theo_cau_hoi)
+api.route('/tra_loi/<cau_hoi_id>/', methods=["GET"])(api_get_tra_loi_theo_cau_hoi)
 api.route('/add_tra_loi/', methods=["POST"])(api_add_cau_tra_loi)
-
+api.route('/delete_tra_loi_by_id/<id>/', methods=["GET"])(api_delete_tra_loi_by_id)
 # search gg
 # api.route('/search_gg/', methods=["GET"])(api_search_gg)
+
+# chat bot
+# api.route('/chat_bot/', methods=["POST"])(send_msg)

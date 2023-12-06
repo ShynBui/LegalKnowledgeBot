@@ -146,3 +146,31 @@ def count_terminology(kw: str = None):
         query = query.filter(or_(ThuatNgu.thuat_ngu.ilike(f"%{kw}%"), ThuatNgu.mo_ta.ilike(f"%{kw}%")))
 
     return query.count()
+
+def add_message(chat_room_id, content, is_user_message):
+    msg = Message(chat_room_id = chat_room_id, content=content, is_user_message=is_user_message)
+    db.session.add(msg)
+    db.session.commit()
+    return msg 
+
+
+def get_message(chat_room_id):
+    return db.session.query(Message).filter(Message.chat_room_id.__eq__(chat_room_id)).all()
+
+
+def add_chat_room(name, user):
+    room = ChatRoom(name=name, user=user)
+    db.session.add(room)
+    db.session.commit()
+    return room
+
+
+def delete_cau_tra_loi_by_id(id):
+    reply_to_delete = db.session.query(Reply).filter_by(id=id).first()
+
+    if reply_to_delete:
+        db.session.delete(reply_to_delete)
+        db.session.commit()
+        return True  
+    else:
+        return False 
