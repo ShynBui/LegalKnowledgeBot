@@ -155,7 +155,11 @@ You will need the following:
 
 ## License
 
-# [Apache License 2.0](http://www.apache.org/licenses/)
+This project is licensed under the terms of the [Apache License 2.0](http://www.apache.org/licenses/) license.
+
+## Libraries
+
+1. Flask and related extensions:
 
 - Flask (3.0.0)
 - Flask-Bcrypt (1.0.1)
