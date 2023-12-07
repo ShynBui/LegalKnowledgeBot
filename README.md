@@ -50,6 +50,7 @@ VITE_SERVER_URL="http://localhost:5050"
     ```
 3. **Access the Application:** Open your web browser and navigate to `http://localhost:5173` to access the application interface.
 
+4. Sevice Frontend
 | Service                      | Endpoints                  |
 | ---------------------------- | -------------------------- |
 | Pháp điển (Legal field)      | `/phapdien`                |
@@ -58,6 +59,42 @@ VITE_SERVER_URL="http://localhost:5050"
 | Diễn đàn (Forum)             | `/diendan`                 |
 | Hỏi đáp hệ thống (System Q&A)| `/chat`                    |
 | Hỏi đáp google (Q&A GG)      | `/chatgg`                  |
+And another service, for example is report, login..., you can try when you use above serivce
+
+5. API Backend
+
+| API                         | Endpoints                                     |
+| ------------------------------- | --------------------------------------------- |
+| User Management                 |                                               |
+| - User Login (Đăng nhập người dùng)                    | `/login/`                                     |
+| - Current User Information (Thông tin người dùng hiện tại)      | `/current-user/`                              |
+| - User Registration (Đăng ký người dùng)             | `/register-user/`                             |
+| Legal Field (Lĩnh vực pháp lý)                     |                                               |
+| - Legal field topic (Chủ đề pháp điển)            | `/chu_de_phap_dien/`                          |
+| - Subtopics under legal field (Đề mục theo chủ đề)           | `/chu_de_phap_dien/<chu_de_id>/de_muc/`       |
+| - Indexes under subtopic (Chi mục theo đề mục)           | `/de_muc_phap_dien/<de_muc_id>/chi_muc/`     |
+| - Indexes under chapter (Chi mục theo chương )           | `/chuong_va_dieu_phap_dien/<chuong_id>/chi_muc/` |
+| - Thuật ngữ (Terminology)                     | `/thuat_ngu/`                                 |
+| - Search terminology (Tìm kiếm thuật ngữ)            | `/thuat_ngu/doan_van/`                        |
+| - View terminology by ID(Xem thuật ngữ theo ID)          | `/thuat_ngu/<id>/`                            |
+| - Search Paragraph (Tìm kiếm đoạn văn)              | `/terminologies/search-paragraph/`            |
+| - Get Terminology (Lấy thuật ngữ)                | `/terminologies/`                             |
+| - Search Thuật Ngữ (Tìm kiếm thuật ngữ)              | `/search_thuat_ngu/`                          |
+| Questions (Câu hỏi)                        |                                               |
+| - Get Questions by id (Lấy câu hỏi theo chủ đề)       | `/cau_hoi/<chu_de_id>/`                       |
+| - Add Question (Thêm câu hỏi)                   | `/add_cau_hoi/`                               |
+| - Get Question by ID (Lấy câu hỏi theo ID)             | `/cau_hoi_by_id/<id>/`                        |
+| Answers (Câu trả lời)                      |                                               |
+| - Get Answers by Question (Lấy câu trả lời theo câu hỏi)      | `/tra_loi/<cau_hoi_id>/`                      |
+| - Add Question (Thêm câu trả lời)               | `/add_tra_loi/`                               |
+| - Delete Quesstion by ID (Xóa câu trả lời theo ID)  | `/delete_tra_loi_by_id/<id>/`                 |
+| Google Search (Tìm kiếm Google)                   | `/search_gg/`                                 |
+| Chat Bot (Bot Chat)                          |                                               |
+| - User Chat (Chat người dùng)                     | `/chat/` (GET để lấy, POST để thêm)           |
+| Report Users (Ghi nhận báo cáo người dùng)      | `/bao_cao_nguoi_dung/`                        |
+
+
+
 ## Next steps
 
 -   Add new features
