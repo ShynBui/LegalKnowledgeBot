@@ -104,7 +104,7 @@ def add_tin_nhan_api():
     kết quả. Tạo NĂM truy vấn tìm kiếm trên Google tương tự với câu hỏi này. Đầu ra phải là một danh sách các câu hỏi được xếp theo thứ tự liên quan đến câu hỏi gốc nhất và mỗi câu hỏi phải có một dấu chấm hỏi ở cuối: {question}"""
 
     prompt = ChatPromptTemplate.from_template(template)
-    model = ChatOpenAI(openai_api_key="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")
+    model = ChatOpenAI(openai_api_key="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")
 
 
     def format_docs(docs):
@@ -137,7 +137,7 @@ def add_tin_nhan_api():
         
         while "error" in output:
             print('fail')
-            time.sleep(1)
+         
             step += 1
             output = query({
             "inputs": {
