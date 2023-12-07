@@ -50,6 +50,14 @@ VITE_SERVER_URL="http://localhost:5050"
     ```
 3. **Access the Application:** Open your web browser and navigate to `http://localhost:5173` to access the application interface.
 
+| Service                      | Endpoints                  |
+| ---------------------------- | -------------------------- |
+| Pháp điển (Legal field)      | `/phapdien`                |
+| Tìm kiếm thuật ngữ (Find Terms) | `/timkiemthuatngu`       |
+| Xem thuật ngữ (Filters Terms) | `/thuatngu`                |
+| Diễn đàn (Forum)             | `/diendan`                 |
+| Hỏi đáp hệ thống (System Q&A)| `/chat`                    |
+| Hỏi đáp google (Q&A GG)      | `/chatgg`                  |
 ## Next steps
 
 -   Add new features
