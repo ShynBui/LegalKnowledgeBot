@@ -75,6 +75,10 @@ We maintain three branches in our GitHub repository:
 
 Feel free to explore each branch for more information and contribute to the development of LegalKnowledgeBot!
 
+# Another Models
+  - [vie_qa](https://huggingface.co/ShynBui/vie_qa)
+  - [text_classification](https://huggingface.co/ShynBui/text_classification)
+
 # Authors
 -   [Nguyen Duc Hoang](https://github.com/duchoaang)
 -   [Bui Tien Phat](https://github.com/ShynBui)
