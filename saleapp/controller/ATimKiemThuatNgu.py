@@ -54,32 +54,19 @@ def search_terminology_form_paragraph():
     if paragraph is None:
         return jsonify({"msg": "empty"}), 204
     file_path = os.path.join(app.root_path, 'data', 'full_thuat_ngu_procesing_v3.csv')
-    data_thuat_ngu = pd.read_csv(file_path)
-    nouns = get_nouns(paragraph)
-    result = map(lambda x: x.replace("_", " ").lower(), nouns)
-    result = list(set(result))
-    data_thuat_ngu['thuatngu_lower'] = data_thuat_ngu['thuatngu'].map(lambda x: x.lower())
-    words = data_thuat_ngu['thuatngu_lower'].map(lambda x : is_in(x, result))
-    result_x = [x for x in words if x != -1]
-    result_x = list(set(result_x))
+    data_terminologies = pd.read_csv(file_path)
 
-    words = result_x
-    
-    data_thuat_ngu['label'] = data_thuat_ngu['thuatngu_lower'].map(lambda x : 1 if x in words else 0)
-    
-    my_new = data_thuat_ngu[data_thuat_ngu['label'] == 1]
-        
-    # for row in data_terminologies.iloc:
-    #     if row['thuatngu']:
-    #         if is_existed(row['thuatngu'].lower().strip(), paragraph):
-    #             words.append({'word': row['thuatngu'], 'mean': row['mota']})
-    #     print("err")
-        
-    words = {'word': my_new['thuatngu_lower'], 'mean': my_new['mota']}
-    print(words)
+    words = []
+    for row in data_terminologies.iloc:
+        if row['thuatngu']:
+            if is_existed(row['thuatngu'].lower().strip(), paragraph):
+                words.append({'word': row['thuatngu'], 'mean': row['mota']})
+        print("err")
+                
+    return jsonify(words), 200
+
    
 
-    return jsonify(words), 200
 
 
 def get_nouns(sentence):
