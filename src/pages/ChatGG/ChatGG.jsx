@@ -37,12 +37,9 @@ const ChatGG = () => {
                             </React.Fragment>
                         )),
                         refs: response.map((r, i) => (
-                            <React.Fragment key={i}>
-                                <a href={r.sources} target="_blank">
-                                    {i + 1}. {r.sources}
-                                </a>
-                                <br />
-                            </React.Fragment>
+                            <a key={i} href={r.sources} target="_blank">
+                                {i + 1}. {r.sources}
+                            </a>
                         )),
                     },
                 ]);
@@ -174,9 +171,18 @@ const Message = ({ message }) => {
                                 pt: 1,
                             }}
                         >
+                            <div style={{display:'flex', justifyContent:'center', flexDirection:'column'}}>
                             {message.refs.map((r, i) => (
-                                <Typography key={i}>{r}</Typography>
+                                <React.Fragment key={i}>
+                                    
+                                    <Typography>
+                                        {r}
+                                    </Typography>
+                                   
+                                    <br />
+                                </React.Fragment>
                             ))}
+                             </div>
                         </Box>
                     )}
                 </Paper>
