@@ -65,7 +65,9 @@ const Textarea = styled(BaseTextareaAutosize)(
 const TimKiemThuatNgu = () => {
     const [terms, setTerms] = useState([]);
     const [findTerms, setfindTerms] = useState({});
+    const [maybeTerms, setMaybeTerms] = useState([]);
     const [open, setOpen] = useState(false);
+    const [isOpenTerms, setIsOpenTerms] = useState(false);
     const [form, setForm] = useState({
         noi_dung_van_ban: '',
         noi_dung_bao_cao: '',
@@ -80,14 +82,25 @@ const TimKiemThuatNgu = () => {
             if (res.status === 200) {
                 setTerms(res.data);
             }
+            getMayBeTerms();
         } catch (ex) {
             console.error(ex);
         }
     };
 
+    const getMayBeTerms = async () => {
+        const data = post('/search_thuat_ngu/', findTerms).then((data) => {
+            setMaybeTerms(data.sentences);
+            setIsOpenTerms(true);
+        });
+    };
+    console.log(maybeTerms.length);
     return (
         <div style={{ width: '80%', margin: '0 auto' }}>
-            <h1 className="title d-flex justify-center " style={{ margin: '0 auto', width: '80%' }}>
+            <h1
+                className="title d-flex justify-center "
+                style={{ margin: '0 auto', width: '80%', fontSize: '20px', padding: '10px' }}
+            >
                 Tìm thuật ngữ trong văn bản
             </h1>
             <form onSubmit={search}>
@@ -112,8 +125,8 @@ const TimKiemThuatNgu = () => {
                     </div>
                 </div>
             </form>
-            <div className="body_wrapper d-flex justify-center items-center">
-                <div className="body_left" style={{ width: '50%' }}>
+            <div className="body_wrapper">
+                <div className="body_left" style={{ height: '500px', overflow: 'scroll' }}>
                     {terms && terms.length > 0 ? (
                         <div className="overflow-x-auto my-10">
                             <table className="table">
@@ -126,7 +139,6 @@ const TimKiemThuatNgu = () => {
                                 </thead>
                                 <tbody className="text-base">
                                     {terms.map((term, index) => {
-                                        console.log(term);
                                         return (
                                             <tr
                                                 key={index + 1}
@@ -145,56 +157,25 @@ const TimKiemThuatNgu = () => {
                         </div>
                     ) : null}
                 </div>
-                <div className="body_right d-flex" style={{ width: '50%', marginLeft: '15px' }}>
-                    {terms && terms.length > 0 ? (
-                        <div className="overflow-x-auto my-10">
-                            <table className="table">
-                                <thead className="text-button font-bold text-lg border-b-2 border-dark">
-                                    <tr>
-                                        <th>STT</th>
-                                        <th>Thuật ngữ</th>
-                                        <th>Định nghĩa</th>
-                                        <th>Góp ý</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="text-base">
-                                    {terms.map((term, index) => {
-                                        return (
-                                            <tr
-                                                key={index + 1}
-                                                className={`${
-                                                    index !== 49 ? 'border-b border-dark' : ''
-                                                }  hover:bg-blue-100`}
-                                            >
-                                                <th>{index + 1}</th>
-                                                <td>{term.word}</td>
-                                                <td>{term.mean}</td>
-                                                <td style={{ width: '100px' }}>
-                                                    {' '}
-                                                    <button
-                                                        type="submit"
-                                                        className="py-2 bg-button text-white border-2 border-dark"
-                                                        style={{ width: '80px' }}
-                                                        onClick={() => {
-                                                            setOpen(true);
-                                                            setForm({
-                                                                ...form,
-                                                                thuat_ngu: term.word,
-                                                            });
-                                                        }}
-                                                    >
-                                                        Báo cáo
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        );
-                                    })}
-                                </tbody>
-                            </table>
-                        </div>
-                    ) : null}
-                </div>
+              
             </div>
+            <div className="maybeTerm" style={{  marginLeft:'20px' }}>
+                    <h1 style={{display:'flex', justifyContent:'center', marginBottom:'30px'}}>Danh sách các từ có thể là thuật ngữ </h1>
+                    {maybeTerms.length != 0 ? (
+                        <>
+                            {maybeTerms[0].map((term) => (
+                                <>
+                                    <div className="wrapper d-flex " style={{marginBottom:'10px', justifyContent:'space-between'}}>
+                                        <h1>{term}</h1>
+                                        <button style={{padding:'10px', backgroundColor:'red'}} onClick={() => {setOpen(true);setForm({...form, thuat_ngu: term})}}>Đóng góp</button>
+                                    </div>
+                                </>
+                            ))}
+                        </>
+                    ) : (
+                        <>Loading</>
+                    )}
+                </div>
             <Modal
                 open={open}
                 onClose={() => setOpen(false)}
@@ -215,7 +196,7 @@ const TimKiemThuatNgu = () => {
                     }}
                 >
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        Báo cáo
+                        Đóng góp
                     </Typography>
                     <form
                         onSubmit={(e) => {
@@ -223,12 +204,13 @@ const TimKiemThuatNgu = () => {
                             let tmp = post('/bao_cao_nguoi_dung/', form);
                             console.log(tmp);
                             setOpen(false);
+                            alert("Đóng góp của bạn đã được ghi nhận để phát triển")
                         }}
                     >
                         <Textarea
                             aria-label="minimum height"
                             minRows={3}
-                            placeholder="Minimum 3 rows"
+                            placeholder=""
                             onChange={(e) => {
                                 setForm({ ...form, noi_dung_bao_cao: e.target.value });
                             }}

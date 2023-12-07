@@ -184,6 +184,47 @@ const Home = () => {
                             </h1>
                         </div>
                     </Link>
+                    <Link
+                        to="/chatgg"
+                        style={{ width: '200px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+                    >
+                        <Button
+                            variant="outlined"
+                            sx={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                borderRadius: '50%',
+                                padding: '30px',
+                                color: '#797979',
+                                border: '1px solid #797979',
+                            }}
+                        >
+                            <AssignmentIcon sx={{ fontSize: 50 }} />
+                        </Button>
+                        <div
+                            className="des_wrapper"
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'center',
+                                marginTop: '40px',
+                            }}
+                        >
+                            <span style={{ color: '#56AED4', fontSize: '22px', fontWeight: '510' }}>
+                                Tìm kiếm Google
+                            </span>
+                            <h1
+                                style={{
+                                    fontSize: '16px',
+                                    wordWrap: 'break-word',
+                                    textAlign: 'center',
+                                    marginTop: '25px',
+                                }}
+                            >
+                                Hệ thống hỏi đáp tự động, giúp bạn hỏi những kiến thức về pháp luật nhanh chóng
+                            </h1>
+                        </div>
+                    </Link>
                 </div>
             </div>
 
