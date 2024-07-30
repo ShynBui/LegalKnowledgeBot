@@ -80,8 +80,8 @@ Feel free to explore each branch for more information and contribute to the deve
   - [text_classification](https://huggingface.co/ShynBui/text_classification)
 
 # Authors
--   [Nguyen Duc Hoang](https://github.com/duchoaang)
 -   [Bui Tien Phat](https://github.com/ShynBui)
+-   [Nguyen Duc Hoang](https://github.com/duchoaang)
 -   [Tsan Quy Thanh](https://github.com/quythanh)
 
 # License
